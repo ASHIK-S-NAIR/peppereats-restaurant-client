@@ -145,12 +145,12 @@ const Menu = () => {
               value='dinner'
               onClick={(e) => setMenuCategory(e.target.value)}
             >
-              dinner
+              dinner``
             </button>
             <button
               type="button"
               className="menu-tab-item"
-              data-target="#drinks"
+              data-target="#drinks"`
               value='drinks'
               onClick={(e) => setMenuCategory(e.target.value)}
             >
