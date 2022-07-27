@@ -4,11 +4,13 @@
 
 /* variables */
 :root {
-  --main-color: #eaa023;
-  --dark: #0c1023;
-  --dark-light: #191f3a;
+  /* --main-color: #eaa023; */
+  --main-color: #D9C666;
+  /* --dark: #0c1023; */
+  --dark: #000D0D;
+  --dark-light: #01261C;
   --white: #ffffff;
-  --white-light: #c8c8c8;
+  --white-light: #F2D98D;
   --shadow: 0 0 15px rgba(0, 0, 0, 0.25);
   --cursive-font: "Dancing Script", cursive;
   scroll-behavior: smooth;

@@ -21,7 +21,7 @@ function App() {
       <Header />
       <Home />
       <About />
-      {/* <Menu /> */}
+      <Menu />
       <Testimonial />
       <Team />
       <Footer />
