@@ -1,8 +1,9 @@
 import React from "react";
-import TestimonialImage1 from "../assets/images/testimonials/1.jpg";
-import TestimonialImage2 from "../assets/images/testimonials/2.jpg";
-import TestimonialImage3 from "../assets/images/testimonials/3.jpg";
-import TestimonialItem from "./TestimonialItem";
+import TestimonialImage1 from "../../assets/images/testimonials/1.jpg";
+import TestimonialImage2 from "../../assets/images/testimonials/2.jpg";
+import TestimonialImage3 from "../../assets/images/testimonials/3.jpg";
+import TestimonialItem from "./components/TestimonialItem";
+import "./style.css";
 
 const Testimonial = () => {
   const testimonialMembers = [

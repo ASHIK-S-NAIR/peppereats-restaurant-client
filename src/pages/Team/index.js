@@ -1,8 +1,9 @@
 import React from "react";
-import TeamImage1 from "../assets/images/team/1.jpg";
-import TeamImage2 from "../assets/images/team/2.jpg";
-import TeamImage3 from "../assets/images/team/3.jpg";
-import TeamItem from "./TeamItem";
+import TeamImage1 from "../../assets/images/team/1.jpg";
+import TeamImage2 from "../../assets/images/team/2.jpg";
+import TeamImage3 from "../../assets/images/team/3.jpg";
+import TeamItem from "./components/TeamItem";
+import "./style.css";
 
 const Team = () => {
   const teamMembers = [

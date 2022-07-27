@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import logoIcon from "../assets/brand/logo.png";
+import logoIcon from "../../assets/brand/logo.png";
+import "./style.css";
 
 window.addEventListener("scroll", function(){
     if(this.pageYOffset > 60){
