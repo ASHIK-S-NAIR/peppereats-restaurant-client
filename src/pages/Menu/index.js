@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getCategories } from "../../api/category";
 import LunchImage from "../../assets/images/menu/1.jpg";
 import DinnerImage from "../../assets/images/menu/2.jpg";
 import DrinksImage from "../../assets/images/menu/3.jpg";
@@ -6,7 +7,8 @@ import DessertsImage from "../../assets/images/menu/4.jpg";
 import "./style.css";
 
 const Menu = () => {
-  const [menuCategory, setMenuCategory] = useState("lunch");
+  const [menuCategoryItems, setMenuCategoryItems] = useState([]);
+  const [menuCategory, setMenuCategory] = useState(menuCategoryItems[0]);
   const [menu, setMenu] = useState([]);
 
   const menuItems = [
@@ -110,13 +112,25 @@ const Menu = () => {
     },
   ];
 
-  const menuCategoryItems = ["lunch", "dinner", "drinks", "desserts"];
+  // const menuCategoryItems = ["lunch", "dinner", "drinks", "desserts"];
 
   const fetchMenu = async () => {
     const tempMenu = menuItems.filter(
       (menuItem) => menuItem.category === menuCategory
     );
     return setMenu(tempMenu);
+  };
+
+  const loadMenuCategoryItems = async () => {
+    try {
+      const result = await getCategories();
+      if (result.error) {
+        return console.log(result.error);
+      }
+      return setMenuCategoryItems(result);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const menuBtn = (category, index) => {
@@ -149,6 +163,10 @@ const Menu = () => {
   useEffect(() => {
     fetchMenu();
   }, [menuCategory]);
+
+  useEffect(() => {
+    loadMenuCategoryItems();
+  }, []);
   return (
     <section className="menu-section sec-padding" id="our-menu">
       <div className="container">
@@ -163,7 +181,7 @@ const Menu = () => {
           <div className="menu-tabs" data-aos="fade-up">
             {menuCategoryItems &&
               menuCategoryItems.map((menuCategoryItem, index) => {
-                return menuBtn(menuCategoryItem, index);
+                return menuBtn(menuCategoryItem.categoryName, index);
               })}
           </div>
         </div>

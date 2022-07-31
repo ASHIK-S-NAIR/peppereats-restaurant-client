@@ -13,7 +13,7 @@ const Home = () => {
             data-aos="fade-up"
             data-aos-duration="1000"
           >
-            <h1>Dine Out Restaurant</h1>
+            <h1>PepperEats Restaurant</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur r. Modi quam aspernatur
               laboriosam, ipsa facilis temporibus quidem dolorum unde.

@@ -5,12 +5,12 @@
 /* variables */
 :root {
   /* --main-color: #eaa023; */
-  --main-color: #D9C666;
+  --main-color: #d9c666;
   /* --dark: #0c1023; */
-  --dark: #000D0D;
-  --dark-light: #01261C;
+  --dark: #000d0d;
+  --dark-light: #01261c;
   --white: #ffffff;
-  --white-light: #F2D98D;
+  --white-light: #f2d98d;
   --shadow: 0 0 15px rgba(0, 0, 0, 0.25);
   --cursive-font: "Dancing Script", cursive;
   scroll-behavior: smooth;
@@ -206,5 +206,31 @@ section {
   opacity: 0;
 }
 
+/* custom scroll-bar starts */
 
+body::-webkit-scrollbar {
+  width: 1vw;
+}
 
+body::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--white-light);
+  height: 10vw;
+  border-radius: 100vw;
+  border: 3px solid var(--dark);
+  transition: background-color 200ms ease-in-out;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--dark-light);
+}
+
+* {
+  scrollbar-color: var(--dark) var(--main-color);
+  scrollbar-width: thin;
+}
+
+/* custom scroll-bar ends */
