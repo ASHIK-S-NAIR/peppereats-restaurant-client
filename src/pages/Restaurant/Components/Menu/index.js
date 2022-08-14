@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getCategories } from "../../api/category";
-import LunchImage from "../../assets/images/menu/1.jpg";
-import DinnerImage from "../../assets/images/menu/2.jpg";
-import DrinksImage from "../../assets/images/menu/3.jpg";
-import DessertsImage from "../../assets/images/menu/4.jpg";
+import { getCategories } from "../../../../api/category";
+import LunchImage from "../../../../assets/images/menu/1.jpg";
+import DinnerImage from "../../../../assets/images/menu/2.jpg";
+import DrinksImage from "../../../../assets/images/menu/3.jpg";
+import DessertsImage from "../../../../assets/images/menu/4.jpg";
 import "./style.css";
 
 const Menu = () => {
