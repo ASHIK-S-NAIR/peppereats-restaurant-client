@@ -71,6 +71,10 @@ p {
   font-size: 16px;
 }
 
+input{
+  border: none;
+}
+
 .container {
   max-width: 1170px;
   margin: auto;
@@ -148,6 +152,51 @@ section {
 .btn-default:hover {
   color: var(--white);
   background-color: var(--main-color);
+}
+
+.form{
+  border: 1px solid peru;
+  padding: 2em 1em;
+  border-radius: 10px;
+  display: grid;
+  width: 30%;
+  margin: 0 auto;
+}
+
+.form-input-sec{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5em;
+}
+
+.form-label{
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 0.5em;
+}
+
+.form-input{
+  height: auto;
+  padding: 0.5em 0.7em;
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 10px;
+  color: var(--main-color);
+}
+
+.form-button{
+  height: 2.8em;
+  border-radius: 10px;
+  background-color: white;
+  color: var(--dark);
+  width: 90%;
+  margin: 0 auto;
+}
+
+.form-button:hover{
+  background-color: var(--main-color);
+  color: white;
 }
 
 /* animation keyframe */

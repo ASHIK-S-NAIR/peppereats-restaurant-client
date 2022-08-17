@@ -1,9 +1,11 @@
 import axios from "axios";
+import { API } from "../setup/backend-manager";
+
 
 export const getCategories = async () => {
   try {
-    const response = await axios.get("http://localhost:4000/api/v1/category/getallcategory");
-    return response.data;
+    const {data} = await axios.get(`${API}/category/getallcategory`);
+    return data;
   } catch (error) {
     return error;
   }

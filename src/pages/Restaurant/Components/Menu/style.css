@@ -76,6 +76,10 @@
   transition: color 0.3s ease;
 }
 
+.memu-ite-title p{
+  font-size: 14px;
+}
+
 .menu-item:hover .menu-item-title h3 {
   color: var(--main-color);
 }

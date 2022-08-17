@@ -1,0 +1,17 @@
+.reservation-timeTable{
+    display: grid;
+    width: 75%;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 1em;
+    margin: 0 auto;
+}
+
+.reservation-timeTable-btn{
+    border: 1px solid var(--main-color);
+    border-radius: 10px;
+}
+
+.reservation-timeTable-btn:hover{
+    background-color: var(--main-color);
+    color: var(--dark);
+}

@@ -32,10 +32,27 @@
     align-items: center;
     padding: 0 15px;
   }
+
+  .header .group-nav{
+    display: flex;
+  }
+
+  .cta-btn{
+    background-color: var(--main-color);
+    color: var(--dark-light);
+    border: 1px solid var(--main-color);
+  }
+
+  .cta-btn:hover{
+    background-color: transparent;
+    color: var(--main-color);
+  }
+
   .header .nav-toggler {
     height: 34px;
     width: 44px;
     margin-right: 15px;
+    margin-left: 20px;
     cursor: pointer;
     border: none;
     background-color: transparent;
