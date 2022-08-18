@@ -4,6 +4,7 @@
     grid-template-columns: repeat(6, 1fr);
     column-gap: 1em;
     margin: 0 auto;
+    margin-bottom: 2.5em;
 }
 
 .reservation-timeTable-btn{
@@ -14,4 +15,128 @@
 .reservation-timeTable-btn:hover{
     background-color: var(--main-color);
     color: var(--dark);
+}
+
+.reservation-table{
+    width: 90%;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 5em 0.5em;
+    margin-bottom: 1em;
+}
+
+.reservation-table-4-seater-group-row{
+    justify-content: space-between;
+    width: 55%;
+    margin: 0 auto;
+    margin-bottom: 2.5em;
+}
+
+.reservation-table-3-seater-group-row{
+    justify-content: space-between;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 2.5em;
+}
+
+.reservation-table-2-seater-group-row{
+    justify-content: space-between;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.reservation-color-code-group{
+    width: 40%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+.reservation-color-code-item{
+    display: flex;
+    align-items: center;
+}
+
+.reservation-color-code-color{
+    width: 1.2em;
+    height: 1.2em;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-right: 0.5em;
+}
+
+.reservation-color-code-color-reserved{
+    background-color: rgb(217, 217, 217,0.25);
+    border: 1px solid white;
+}
+
+.reservation-color-code-color-available{
+    background-color: transparent;
+    border: 1px solid var(--main-color);
+}
+
+.reservation-color-code-color-selected{
+    background-color: var(--main-color);
+    border: 1px solid var(--main-color);
+}
+
+.reservation-color-code-name{
+    font-size: 0.85rem;
+    color: white;
+}
+
+.reservation-seater-config-group{
+    display: flex;
+    width: 50%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.reservation-seater-config-item{
+    display: flex;
+    align-items: center;
+}
+
+.reservation-seater-config-image{
+    margin-right: 0.8em;
+    width: 3.5em;
+}
+
+.reservation-seater-config-name{
+    font-size: 0.85rem;
+    color: white;
+}
+
+.reservation-list-group{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.reservation-list-p{
+    margin-bottom: 1em;
+    color: white;
+}
+
+.reservation-list-p span{
+    font-weight: 600;
+    color: var(--main-color);
+}
+
+.reservation-list-confirm-btn{
+    border: 1px solid var(--main-color);
+    background-color: var(--main-color);
+    color: var(--dark);
+    width: 15em;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+
+.reservation-list-confirm-btn:hover{
+    background-color: transparent;
+    color: var(--main-color);
 }

@@ -13,14 +13,14 @@ const OtpVerify = () => {
       <div className="container">
         <div className="row">
           <div className="section-title">
-            <h2 data-aos="fade-up">OTP Verify</h2>
+            <h2 data-aos="fade-up">Verify OTP</h2>
           </div>
         </div>
         <div className="row">
           <form className="otpVerify-form form" onSubmit={onSubmit}>
             <div className="form-input-sec">
               <label htmlFor="" className="form-label">
-                Enter Phone Number
+                Enter the OTP code
               </label>
               <input
                 type="password"
