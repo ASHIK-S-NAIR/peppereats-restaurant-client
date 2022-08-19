@@ -10,6 +10,8 @@ import Reservation from "./pages/Reservation";
 import CustomerLogin from "pages/CustomerLogin";
 import OtpVerify from "pages/OtpVerify";
 import CustomerSignup from "pages/CustomerSignup";
+import AdminPanel from "pages/AdminPanel";
+import AdminRoutes from "setup/auth-manager/AdminRoutes";
 
 function App() {
   AOS.init();
@@ -28,6 +30,14 @@ function App() {
           <Route path="/customerlogin" element={<CustomerLogin />} />
           <Route path="/otpverify" element={<OtpVerify />} />
           <Route path="/customersignup" element={<CustomerSignup />} />
+          <Route
+            path="/adminpanel"
+            element={
+              <AdminRoutes>
+                <AdminPanel />
+              </AdminRoutes>
+            }
+          />
         </Routes>
         <Footer />
       </BrowserRouter>

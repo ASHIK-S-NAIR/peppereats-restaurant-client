@@ -25,7 +25,7 @@ export const isAuthenticated = () => {
     return false;
   }
   if (localStorage.getItem("peppereats_jwt")) {
-    return localStorage.getItem("peppereats_jwt");
+    return JSON.parse(localStorage.getItem("peppereats_jwt"));
   } else {
     return false;
   }
