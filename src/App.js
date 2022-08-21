@@ -31,7 +31,7 @@ function App() {
           <Route path="/otpverify" element={<OtpVerify />} />
           <Route path="/customersignup" element={<CustomerSignup />} />
           <Route
-            path="/adminpanel"
+            path="/adminpanel/:currentTab"
             element={
               <AdminRoutes>
                 <AdminPanel />

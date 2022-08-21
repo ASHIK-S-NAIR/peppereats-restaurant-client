@@ -20,9 +20,8 @@ const AdminLogin = () => {
       if (data.error) {
         return console.log(data.error);
       }
-      console.log("data", data);
       authenticate(data);
-      return navigate("/");
+      return navigate("/adminpanel/reservation");
     } catch (error) {
       return console.log(error);
     }

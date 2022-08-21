@@ -3,7 +3,7 @@ import { isAuthenticated } from 'api/auth';
 
 const AdminRoutes = ({children}) => {
 
-  if (!(isAuthenticated() && isAuthenticated().admin.role === 2)) {
+  if (!(isAuthenticated() && isAuthenticated().admin.role === 1)) {
     return <Navigate to="/" />
   }
   

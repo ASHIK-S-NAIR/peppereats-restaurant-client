@@ -11,3 +11,12 @@ export const getMenuByCategory = async (menuCategoryId) => {
     return error;
   }
 };
+
+export const getAllMenu = async () => {
+  try {
+    const { data } = await axios.get(`${API}/menu/getallmenu`);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
