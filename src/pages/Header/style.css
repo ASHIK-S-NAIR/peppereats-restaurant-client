@@ -142,4 +142,10 @@
     color: var(--main-color);
   }
   
-  /* header section enss*/
+  /* header section ends*/
+
+  @media (max-width: 767px){
+    .cta-btn{
+      display: none;
+    }
+  }

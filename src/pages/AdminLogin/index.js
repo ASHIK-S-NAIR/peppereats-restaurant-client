@@ -36,7 +36,7 @@ const AdminLogin = () => {
           </div>
         </div>
         <div className="row">
-          <form className="adminLogin-form form" onSubmit={onSubmit}>
+          <form className=" form adminLogin-form" onSubmit={onSubmit}>
             <div className="form-input-sec">
               <label htmlFor="" className="form-label">
                 Email

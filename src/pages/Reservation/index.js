@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import moment from "moment";
 import Menu from "./Componenets/Menu";
-import fourSeater from "../../assets/images/tables/4-seater.svg";
-import threeSeater from "../../assets/images/tables/3-seater.svg";
-import twoSeater from "../../assets/images/tables/2-seater.svg";
+import fourSeaterIcon from "../../assets/images/tables/4-seater.svg";
+import threeSeaterIcon from "../../assets/images/tables/3-seater.svg";
+import twoSeaterIcon from "../../assets/images/tables/2-seater.svg";
 import "./style.css";
 
 const Reservation = () => {
   const [time, setTime] = useState("05:00PM");
   const [table, setTable] = useState("");
   const [preorders, setPreorders] = useState([]);
+
+  const timings = [
+    "05:00PM",
+    "06:00PM",
+    "07:00PM",
+    "08:00PM",
+    "09:00PM",
+    "10:00PM",
+  ];
+  const fourSeaters = ["T1", "T2", "T3", "T4"];
+  const threeSeaters = ["T5", "T6", "T7", "T8", "T9", "T10"];
+  const twoSeaters = ["T11", "T12", "T13", "T14", "T15", "T16", "T17", "T18"];
 
   const onSubmit = async () => {
     //
@@ -33,75 +45,74 @@ const Reservation = () => {
           </div>
           <div className="row">
             <div className="reservation-timeTable" data-aos="fade-up">
-              <button className="reservation-timeTable-btn btn">05:00PM</button>
-              <button className="reservation-timeTable-btn btn">06:00PM</button>
-              <button className="reservation-timeTable-btn btn">07:00PM</button>
-              <button className="reservation-timeTable-btn btn">08:00PM</button>
-              <button className="reservation-timeTable-btn btn">09:00PM</button>
-              <button className="reservation-timeTable-btn btn">10:00PM</button>
+              {timings &&
+                timings.map((timing, index) => {
+                  return (
+                    <button
+                      className={`btn reservation-timeTable-btn ${
+                        time === timing ? "active" : ""
+                      }`}
+                      onClick={() => setTime(timing)}
+                      key={index}
+                    >
+                      {timing}
+                    </button>
+                  );
+                })}
             </div>
           </div>
           <div className="row">
             <div className="reservation-table" data-aos="fade-up">
               <div className="row reservation-table-4-seater-group-row">
-                <div className="reservation-table-4-seater-item">
-                  <img src={fourSeater} alt="4 seater table" />
-                </div>
-                <div className="reservation-table-4-seater-item">
-                  <img src={fourSeater} alt="4 seater table" />
-                </div>
-                <div className="reservation-table-4-seater-item">
-                  <img src={fourSeater} alt="4 seater table" />
-                </div>
-                <div className="reservation-table-4-seater-item">
-                  <img src={fourSeater} alt="4 seater table" />
-                </div>
+                {fourSeaters &&
+                  fourSeaters.map((fourSeater, index) => {
+                    return (
+                      <div
+                        className={`reservation-table-seater-item reservation-table-4-seater-item ${
+                          table === fourSeater ? "active" : ""
+                        }  `}
+                        data-table={fourSeater}
+                        key={index}
+                        onClick={() => setTable(fourSeater)}
+                      >
+                        <img src={fourSeaterIcon} alt="4 seater table" />
+                      </div>
+                    );
+                  })}
               </div>
               <div className="row reservation-table-3-seater-group-row">
-                <div className="reservation-table-3-seater-item">
-                  <img src={threeSeater} alt="3 seater table" />
-                </div>
-                <div className="reservation-table-3-seater-item">
-                  <img src={threeSeater} alt="3 seater table" />
-                </div>
-                <div className="reservation-table-3-seater-item">
-                  <img src={threeSeater} alt="3 seater table" />
-                </div>
-                <div className="reservation-table-3-seater-item">
-                  <img src={threeSeater} alt="3 seater table" />
-                </div>
-                <div className="reservation-table-3-seater-item">
-                  <img src={threeSeater} alt="3 seater table" />
-                </div>
-                <div className="reservation-table-3-seater-item">
-                  <img src={threeSeater} alt="3 seater table" />
-                </div>
+                {threeSeaters &&
+                  threeSeaters.map((threeSeater, index) => {
+                    return (
+                      <div
+                        className={`reservation-table-seater-item reservation-table-3-seater-item ${
+                          table === threeSeater ? "active" : ""
+                        }`}
+                        onClick={() => setTable(threeSeater)}
+                        data-table={threeSeater}
+                        key={index}
+                      >
+                        <img src={threeSeaterIcon} alt="3 seater table" />
+                      </div>
+                    );
+                  })}
               </div>
               <div className="row reservation-table-2-seater-group-row">
-                <div className="reservation-table-2-seater-item">
-                  <img src={twoSeater} alt="2 seater table" />
-                </div>
-                <div className="reservation-table-2-seater-item">
-                  <img src={twoSeater} alt="2 seater table" />
-                </div>
-                <div className="reservation-table-2-seater-item">
-                  <img src={twoSeater} alt="2 seater table" />
-                </div>
-                <div className="reservation-table-2-seater-item">
-                  <img src={twoSeater} alt="2 seater table" />
-                </div>
-                <div className="reservation-table-2-seater-item">
-                  <img src={twoSeater} alt="2 seater table" />
-                </div>
-                <div className="reservation-table-2-seater-item">
-                  <img src={twoSeater} alt="2 seater table" />
-                </div>
-                <div className="reservation-table-2-seater-item">
-                  <img src={twoSeater} alt="2 seater table" />
-                </div>
-                <div className="reservation-table-2-seater-item">
-                  <img src={twoSeater} alt="2 seater table" />
-                </div>
+                {twoSeaters &&
+                  twoSeaters.map((twoSeater, index) => {
+                    return (
+                      <div
+                        className={`reservation-table-seater-item reservation-table-2-seater-item ${
+                          table === twoSeater ? "active" : ""
+                        }`}
+                        data-table={twoSeater}
+                        onClick={() => setTable(twoSeater)}
+                        key={index}
+                      >
+                        <img src={twoSeaterIcon} alt="2 seater table" />
+                      </div>
+                    );
+                  })}
               </div>
             </div>
           </div>
@@ -126,15 +137,27 @@ const Reservation = () => {
           <div className="row">
             <div className="reservation-seater-config-group">
               <div className="reservation-seater-config-item">
-                <img src={fourSeater} className="reservation-seater-config-image" alt="4 seater table" />
+                <img
+                  src={fourSeaterIcon}
+                  className="reservation-seater-config-image"
+                  alt="4 seater table"
+                />
                 <p className="reservation-seater-config-name">4 Seater</p>
               </div>
               <div className="reservation-seater-config-item">
-                <img src={threeSeater} className="reservation-seater-config-image" alt="3 seater table" />
+                <img
+                  src={threeSeaterIcon}
+                  className="reservation-seater-config-image"
+                  alt="3 seater table"
+                />
                 <p className="reservation-seater-config-name">3 Seater</p>
               </div>
               <div className="reservation-seater-config-item">
-                <img src={twoSeater} className="reservation-seater-config-image" alt="2 seater table" />
+                <img
+                  src={twoSeaterIcon}
+                  className="reservation-seater-config-image"
+                  alt="2 seater table"
+                />
                 <p className="reservation-seater-config-name">2 Seater</p>
               </div>
             </div>
@@ -159,7 +182,7 @@ const Reservation = () => {
                 )}, ${time}`}</span>
               </p>
               <p className="reservation-list-p">
-                selected teble : <span>{`${table}`}</span>
+                Selected teble : <span>{`${table}`}</span>
               </p>
               <p className="reservation-list-p">
                 PreOrders :{" "}
