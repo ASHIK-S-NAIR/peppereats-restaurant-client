@@ -5,13 +5,14 @@
 .adminPanel-row{
     display: grid;
     grid-template-columns: 22.5% auto;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 90vh;
     border-radius: 10px;
 }
 
 .adminPanel-left{
     width: 100%;
-    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
     padding: 2.5em 1em;
 }
 
@@ -83,5 +84,5 @@
     font-size: 0.75rem;
     padding-top: 1em;
     padding-bottom: 1em;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
   }

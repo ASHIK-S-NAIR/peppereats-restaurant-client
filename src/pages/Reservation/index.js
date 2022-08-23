@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import moment from "moment";
 import Menu from "./Componenets/Menu";
 import fourSeaterIcon from "../../assets/images/tables/4-seater.svg";
+import fourSeaterSelectedIcon from "assets/images/tables/4-seater-selected.svg";
+import fourSeaterAvailableIcon from "assets/images/tables/4-seater-Available.svg";
 import threeSeaterIcon from "../../assets/images/tables/3-seater.svg";
+import threeSeaterSelectedIcon from "../../assets/images/tables/3-seater-selected.svg";
+import threeSeaterAvailableIcon from "../../assets/images/tables/3-seater-available.svg";
 import twoSeaterIcon from "../../assets/images/tables/2-seater.svg";
+import twoSeaterSelectedIcon from "../../assets/images/tables/2-seater-selected.svg";
+import twoSeaterAvailableIcon from "../../assets/images/tables/2-seater-available.svg";
 import "./style.css";
 
 const Reservation = () => {
@@ -75,7 +81,14 @@ const Reservation = () => {
                         key={index}
                         onClick={() => setTable(fourSeater)}
                       >
-                        <img src={fourSeaterIcon} alt="4 seater table" />
+                        <img
+                          src={
+                            fourSeater === table
+                              ? fourSeaterSelectedIcon
+                              : fourSeaterIcon
+                          }
+                          alt="4 seater table"
+                        />
                       </div>
                     );
                   })}
@@ -92,7 +105,14 @@ const Reservation = () => {
                         data-table={threeSeater}
                         key={index}
                       >
-                        <img src={threeSeaterIcon} alt="3 seater table" />
+                        <img
+                          src={
+                            threeSeater === table
+                              ? threeSeaterSelectedIcon
+                              : threeSeaterIcon
+                          }
+                          alt="3 seater table"
+                        />
                       </div>
                     );
                   })}
@@ -109,7 +129,14 @@ const Reservation = () => {
                         onClick={() => setTable(twoSeater)}
                         key={index}
                       >
-                        <img src={twoSeaterIcon} alt="2 seater table" />
+                        <img
+                          src={
+                            twoSeater === table
+                              ? twoSeaterSelectedIcon
+                              : twoSeaterIcon
+                          }
+                          alt="2 seater table"
+                        />
                       </div>
                     );
                   })}

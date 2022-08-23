@@ -54,6 +54,7 @@
 
 .reservation-table-seater-item::before{
     color: white;
+    /* color: red; */
     font-weight: 100;
     font-size: 0.7rem;
     content: attr(data-table);
@@ -63,8 +64,9 @@
     transform: translate(-50%,-50%);
 }
 
-.reservation-table-seater-item.active{
-    border: 1px solid var(--main-color);
+.reservation-table-seater-item.active::before{
+    color: var(--dark);
+    font-weight: 500;
 }
 
 .reservation-color-code-group {
