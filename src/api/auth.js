@@ -30,3 +30,58 @@ export const isAuthenticated = () => {
     return false;
   }
 };
+
+export const customerLoginOtp = async ({ userPhoneNumber }) => {
+  try {
+    const { data } = await axios.post(`${API}/customerloginotp`, {
+      userPhoneNumber,
+    });
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const customerLoginVerify = async ({ userPhoneNumber, otp }) => {
+  try {
+    const { data } = await axios.post(`${API}/customerloginverify`, {
+      userPhoneNumber,
+      otp,
+    });
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const customerSignupOtp = async ({ userPhoneNumber }) => {
+  try {
+    const { data } = await axios.post(`${API}/customerSignupOtp`, {
+      userPhoneNumber,
+    });
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const customerSignupVerify = async ({
+  userPhoneNumber,
+  userFirstName,
+  userLastName,
+  userEmail,
+  otp,
+}) => {
+  try {
+    const { data } = await axios.post(`${API}/customerSignupVerify`, {
+      userPhoneNumber,
+      userFirstName,
+      userLastName,
+      userEmail,
+      otp,
+    });
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

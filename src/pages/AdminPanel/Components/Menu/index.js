@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import {getAllMenu} from  "api/menu";
+import { getAllMenu } from "api/menu";
 import moment from "moment";
 
+import ViewIcon from "assets/images/temp/View.svg";
 import EditIcon from "assets/images/temp/Edit.svg";
 import RemoveIcon from "assets/images/temp/Remove.svg";
+import DeleteMenu from "./Components/DeleteMenu";
 
 const Menu = () => {
   const [menu, setMenu] = useState([]);
+  const [subSection, setSubSection] = useState("");
+  const [menuItem, setMenuItem] = useState();
 
   const loadMenu = async () => {
     try {
@@ -19,6 +23,22 @@ const Menu = () => {
     } catch (error) {
       return console.log(error);
     }
+  };
+
+  const handleAdd = () => {
+    return setSubSection("addMenu");
+  };
+
+  const handleUpdate = (menuItem) => {
+    return setSubSection("updateMenu"), setMenuItem(menuItem);
+  };
+
+  const handleDelete = (menuItem) => {
+    return setSubSection("deleteMenu"), setMenuItem(menuItem);
+  };
+
+  const handleView = (menuItem) => {
+    return setSubSection("viewMenu"), setMenuItem(menuItem);
   };
 
   useEffect(() => {
@@ -66,14 +86,24 @@ const Menu = () => {
                       {moment(menuItem.createdAt).format("DD-MMM-yyyy")}
                     </td>
                     <td className="adminPanel-right-table-body-value">
-                      <button>
+                      <button className="adminPanel-right-table-button">
+                        <img
+                          src={ViewIcon}
+                          alt=""
+                          className="adminPanel-right-table-icon "
+                        />
+                      </button>
+                      <button className="adminPanel-right-table-button">
                         <img
                           src={EditIcon}
                           alt=""
                           className="adminPanel-right-table-icon "
                         />
                       </button>
-                      <button>
+                      <button
+                        className="adminPanel-right-table-button"
+                        onClick={() => handleDelete(menuItem)}
+                      >
                         <img
                           src={RemoveIcon}
                           alt=""
@@ -87,6 +117,9 @@ const Menu = () => {
           </tbody>
         </table>
       </div>
+      {subSection === "deleteMenu" && (
+        <DeleteMenu menu={menuItem} setSubSection={setSubSection} />
+      )}
     </section>
   );
 };

@@ -1,19 +1,24 @@
 import axios from "axios";
 import { API } from "../setup/backend-manager";
 
-export const createMenu = async ({
-  menuName,
-  menuCategory,
-  menuPrice,
-  menuDescription,
-}) => {
+export const createMenu = async (
+  userId,
+  { menuName, menuCategory, menuPrice, menuDescription },
+  token
+) => {
   try {
-    const { data } = await axios.post(`${API}/menu/createmenu`, {
-      menuName,
-      menuCategory,
-      menuPrice,
-      menuDescription,
-    });
+    const { data } = await axios.post(
+      `${API}/menu/createmenu/${userId}`,
+      {
+        menuName,
+        menuCategory,
+        menuPrice,
+        menuDescription,
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     return data;
   } catch (error) {
     return error;
@@ -49,11 +54,14 @@ export const getMenu = async (menuId) => {
   }
 };
 
-export const updateMenu = async (menuId, userId, body) => {
+export const updateMenu = async (menuId, userId, body, token) => {
   try {
     const { data } = await axios.put(
       `${API}/menu/updatemenu/${menuId}/${userId}`,
-      body
+      body,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
     );
     return data;
   } catch (error) {
@@ -61,10 +69,13 @@ export const updateMenu = async (menuId, userId, body) => {
   }
 };
 
-export const updateMenuImage = async (menuId, userId) => {
+export const updateMenuImage = async (menuId, userId, token) => {
   try {
     const { data } = await axios.put(
-      `${API}/menu/updatemenuimage/${menuId}/${userId}`
+      `${API}/menu/updatemenuimage/${menuId}/${userId}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
     );
     return data;
   } catch (error) {
@@ -72,10 +83,13 @@ export const updateMenuImage = async (menuId, userId) => {
   }
 };
 
-export const deleteMenu = async (menuId, userId) => {
+export const deleteMenu = async (menuId, userId, token) => {
   try {
     const { data } = await axios.delete(
-      `${API}/menu/deletemenu/${menuId}/${userId}`
+      `${API}/menu/deletemenu/${menuId}/${userId}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
     );
     return data;
   } catch (error) {

@@ -5,6 +5,16 @@ import Customers from "./Components/Customers";
 import Mail from "./Components/Mail";
 import Menu from "./Components/Menu";
 import Reservation from "./Components/Reservation";
+
+import CategoryInactiveIcon from "assets/images/icons/category_inactive.svg";
+import CategoryActiveIcon from "assets/images/icons/category_active.svg";
+import MenuInactiveIcon from "assets/images/icons/menu_inactive.svg";
+import MenuActiveIcon from "assets/images/icons/menu_active.svg";
+import CustomerInactiveIcon from "assets/images/icons/customer_inactive.svg";
+import CustomerActiveIcon from "assets/images/icons/customer_active.svg";
+import mailInactiveIcon from "assets/images/icons/mail_inactive.svg";
+import mailActiveIcon from "assets/images/icons/mail_active.svg";
+
 import "./style.css";
 
 const AdminPanel = () => {
@@ -13,7 +23,7 @@ const AdminPanel = () => {
 
   useEffect(() => {
     setTabActive(currentTab);
-  }, [currentTab])
+  }, [currentTab]);
 
   return (
     <section className="adminPanel-section sec-padding">
@@ -32,15 +42,15 @@ const AdminPanel = () => {
                     }`}
                   >
                     {" "}
-                    {/* <img
-                    src={
-                      tabActive === "dashboard"
-                        ? DashboardActiveIcon
-                        : DashboardIcon
-                    }
-                    alt=""
-                    className="adminDashPanel-left-img"
-                  /> */}
+                    <img
+                      src={
+                        tabActive === "reservation"
+                          ? CategoryActiveIcon
+                          : CategoryInactiveIcon
+                      }
+                      alt=""
+                      className="adminPanel-left-icon"
+                    />
                     RESERVATION
                   </div>
                 </Link>
@@ -56,15 +66,15 @@ const AdminPanel = () => {
                     }`}
                   >
                     {" "}
-                    {/* <img
-                    src={
-                      tabActive === "dashboard"
-                        ? DashboardActiveIcon
-                        : DashboardIcon
-                    }
-                    alt=""
-                    className="adminDashPanel-left-img"
-                  /> */}
+                    <img
+                      src={
+                        tabActive === "category"
+                          ? CategoryActiveIcon
+                          : CategoryInactiveIcon
+                      }
+                      alt=""
+                      className="adminPanel-left-icon"
+                    />
                     CATEGORY
                   </div>
                 </Link>
@@ -77,15 +87,13 @@ const AdminPanel = () => {
                     }`}
                   >
                     {" "}
-                    {/* <img
-                    src={
-                      tabActive === "dashboard"
-                        ? DashboardActiveIcon
-                        : DashboardIcon
-                    }
-                    alt=""
-                    className="adminDashPanel-left-img"
-                  /> */}
+                    <img
+                      src={
+                        tabActive === "menu" ? MenuActiveIcon : MenuInactiveIcon
+                      }
+                      alt=""
+                      className="adminPanel-left-icon"
+                    />
                     MENU
                   </div>
                 </Link>
@@ -101,15 +109,15 @@ const AdminPanel = () => {
                     }`}
                   >
                     {" "}
-                    {/* <img
-                    src={
-                      tabActive === "dashboard"
-                        ? DashboardActiveIcon
-                        : DashboardIcon
-                    }
-                    alt=""
-                    className="adminDashPanel-left-img"
-                  /> */}
+                    <img
+                      src={
+                        tabActive === "customers"
+                          ? CustomerActiveIcon
+                          : CustomerInactiveIcon
+                      }
+                      alt=""
+                      className="adminPanel-left-icon"
+                    />
                     CUSTOMERS
                   </div>
                 </Link>
@@ -122,15 +130,13 @@ const AdminPanel = () => {
                     }`}
                   >
                     {" "}
-                    {/* <img
-                    src={
-                      tabActive === "dashboard"
-                        ? DashboardActiveIcon
-                        : DashboardIcon
-                    }
-                    alt=""
-                    className="adminDashPanel-left-img"
-                  /> */}
+                    <img
+                      src={
+                        tabActive === "mail" ? mailActiveIcon : mailInactiveIcon
+                      }
+                      alt=""
+                      className="adminPanel-left-icon"
+                    />
                     MAIL
                   </div>
                 </Link>

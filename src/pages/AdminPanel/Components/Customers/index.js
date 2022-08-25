@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { getAllCustomers } from "api/customer";
-import moment from "moment";
 
+import ViewIcon from "assets/images/temp/View.svg";
 import EditIcon from "assets/images/temp/Edit.svg";
 import RemoveIcon from "assets/images/temp/Remove.svg";
 import { isAuthenticated } from "api/auth";
+import ViewCustomer from "./Components/ViewCustomer";
+import DeleteCustomer from "./Components/DeleteCustomer";
+import UpdateCustomer from "./Components/UpdateCustomer";
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
+  const [subSection, setSubSection] = useState("");
+  const [customer, setCustomer] = useState();
 
-  const {admin, token} = isAuthenticated();
+  const { admin, token } = isAuthenticated();
 
   const loadCustomers = async () => {
     try {
-      const data = await getAllCustomers(admin._id, token)
+      const data = await getAllCustomers(admin._id, token);
       if (data.error) {
         return console.log(data.error);
       } else {
@@ -24,9 +29,21 @@ const Customers = () => {
     }
   };
 
+  const handleUpdate = (customer) => {
+    return setSubSection("updateCustomer"), setCustomer(customer);
+  };
+
+  const handleDelete = (customer) => {
+    return setSubSection("deleteCustomer"), setCustomer(customer);
+  };
+
+  const handleView = (customer) => {
+    return setSubSection("viewCustomer"), setCustomer(customer);
+  };
+
   useEffect(() => {
     loadCustomers();
-  }, []);
+  }, [subSection]);
 
   return (
     <section className="adminPanel-right-section">
@@ -43,7 +60,9 @@ const Customers = () => {
               <th className="adminPanel-right-table-head-value">Name</th>
               <th className="adminPanel-right-table-head-value">Email</th>
               <th className="adminPanel-right-table-head-value">PhoneNumber</th>
-              <th className="adminPanel-right-table-head-value">Reservations</th>
+              <th className="adminPanel-right-table-head-value">
+                Reservations
+              </th>
               <th className="adminPanel-right-table-head-value">Action</th>
             </tr>
           </thead>
@@ -65,21 +84,31 @@ const Customers = () => {
                       {customer.customerPhoneNumber}
                     </td>
                     <td className="adminPanel-right-table-body-value">
-                      {(customer.customerReservation).length}
+                      {customer.customerReservation.length}
                     </td>
                     <td className="adminPanel-right-table-body-value">
-                      <button>
+                      <button className="adminPanel-right-table-button">
+                        <img
+                          src={ViewIcon}
+                          alt=""
+                          className="adminPanel-right-table-icon "
+                          onClick={() => handleView(customer)}
+                        />
+                      </button>
+                      <button className="adminPanel-right-table-button">
                         <img
                           src={EditIcon}
                           alt=""
                           className="adminPanel-right-table-icon "
+                          onClick={() => handleUpdate(customer)}
                         />
                       </button>
-                      <button>
+                      <button className="adminPanel-right-table-button">
                         <img
                           src={RemoveIcon}
                           alt=""
                           className="adminPanel-right-table-icon "
+                          onClick={() => handleDelete(customer)}
                         />
                       </button>
                     </td>
@@ -89,6 +118,15 @@ const Customers = () => {
           </tbody>
         </table>
       </div>
+      {subSection === "viewCustomer" && (
+        <ViewCustomer customer={customer} setSubSection={setSubSection} />
+      )}
+      {subSection === "deleteCustomer" && (
+        <DeleteCustomer customer={customer} setSubSection={setSubSection} />
+      )}
+      {subSection === "updateCustomer" && (
+        <UpdateCustomer customer={customer} setSubSection={setSubSection} />
+      )}
     </section>
   );
 };

@@ -154,6 +154,10 @@ section {
   background-color: var(--main-color);
 }
 
+.btn-unclickable{
+  pointer-events: none;
+}
+
 .form{
   border: 1px solid var(--main-color);
   padding: 2em 1em;

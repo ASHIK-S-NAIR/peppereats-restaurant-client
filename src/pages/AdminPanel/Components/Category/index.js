@@ -2,11 +2,18 @@ import React, { useState, useEffect } from "react";
 import { getCategories } from "api/category";
 import moment from "moment";
 
+import ViewIcon from "assets/images/temp/View.svg";
 import EditIcon from "assets/images/temp/Edit.svg";
 import RemoveIcon from "assets/images/temp/Remove.svg";
+import AddCategory from "./Components/AddCategory";
+import UpdateCategory from "./Components/UpdateCategory";
+import ViewCategory from "./Components/ViewCategory";
+import DeleteCategory from "./Components/DeleteCategory";
 
 const Category = () => {
   const [categories, setCategories] = useState([]);
+  const [subSection, setSubSection] = useState("");
+  const [category, setCategory] = useState();
 
   const loadcategory = async () => {
     try {
@@ -21,16 +28,37 @@ const Category = () => {
     }
   };
 
+  const handleAdd = () => {
+    return setSubSection("addCategory");
+  };
+
+  const handleUpdate = (category) => {
+    return setSubSection("updateCategory"), setCategory(category);
+  };
+
+  const handleDelete = (category) => {
+    return setSubSection("deleteCategory"), setCategory(category);
+  };
+
+  const handleView = (category) => {
+    return setSubSection("viewCategory"), setCategory(category);
+  };
+
   useEffect(() => {
     loadcategory();
-  }, []);
+  }, [subSection]);
 
   return (
     <section className="adminPanel-right-section">
       <div className="row">
         <div className="adminPanel-right-header-section">
           <h1 className="adminPanel-right-header">Category</h1>
-          <button className="btn adminPanel-right-addBtn">Add Category</button>
+          <button
+            className="btn adminPanel-right-addBtn"
+            onClick={() => handleAdd()}
+          >
+            Add Category
+          </button>
         </div>
       </div>
       <div className="row">
@@ -66,14 +94,30 @@ const Category = () => {
                       {moment(category.updatedAt).format("DD-MMM-yyyy")}
                     </td>
                     <td className="adminPanel-right-table-body-value">
-                      <button>
+                      <button
+                        className="adminPanel-right-table-button"
+                        onClick={() => handleView(category)}
+                      >
+                        <img
+                          src={ViewIcon}
+                          alt=""
+                          className="adminPanel-right-table-icon "
+                        />
+                      </button>
+                      <button
+                        className="adminPanel-right-table-button"
+                        onClick={() => handleUpdate(category)}
+                      >
                         <img
                           src={EditIcon}
                           alt=""
                           className="adminPanel-right-table-icon "
                         />
                       </button>
-                      <button>
+                      <button
+                        className="adminPanel-right-table-button"
+                        onClick={() => handleDelete(category)}
+                      >
                         <img
                           src={RemoveIcon}
                           alt=""
@@ -87,6 +131,19 @@ const Category = () => {
           </tbody>
         </table>
       </div>
+
+      {subSection === "addCategory" && (
+        <AddCategory setSubSection={setSubSection} />
+      )}
+      {subSection === "updateCategory" && (
+        <UpdateCategory category={category} setSubSection={setSubSection} />
+      )}
+      {subSection === "viewCategory" && (
+        <ViewCategory category={category} setSubSection={setSubSection} />
+      )}
+      {subSection === "deleteCategory" && (
+        <DeleteCategory category={category} setSubSection={setSubSection} />
+      )}
     </section>
   );
 };
