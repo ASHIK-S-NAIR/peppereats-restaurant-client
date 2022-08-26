@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 import moment from "moment";
 import Menu from "./Componenets/Menu";
-import fourSeaterIcon from "../../assets/images/tables/4-seater.svg";
-import fourSeaterSelectedIcon from "assets/images/tables/4-seater-selected.svg";
-import fourSeaterAvailableIcon from "assets/images/tables/4-seater-Available.svg";
-import threeSeaterIcon from "../../assets/images/tables/3-seater.svg";
-import threeSeaterSelectedIcon from "../../assets/images/tables/3-seater-selected.svg";
-import threeSeaterAvailableIcon from "../../assets/images/tables/3-seater-available.svg";
-import twoSeaterIcon from "../../assets/images/tables/2-seater.svg";
-import twoSeaterSelectedIcon from "../../assets/images/tables/2-seater-selected.svg";
-import twoSeaterAvailableIcon from "../../assets/images/tables/2-seater-available.svg";
 import "./style.css";
+import ReservationTimeTable from "./Componenets/ReservationTimeTable";
+import ReservationTable from "./Componenets/ReservationTable";
+import ReservationList from "./Componenets/ReservationList";
 
 const Reservation = () => {
   const [time, setTime] = useState("05:00PM");
@@ -25,13 +19,6 @@ const Reservation = () => {
     "09:00PM",
     "10:00PM",
   ];
-  const fourSeaters = ["T1", "T2", "T3", "T4"];
-  const threeSeaters = ["T5", "T6", "T7", "T8", "T9", "T10"];
-  const twoSeaters = ["T11", "T12", "T13", "T14", "T15", "T16", "T17", "T18"];
-
-  const onSubmit = async () => {
-    //
-  };
 
   return (
     <div className="reservation">
@@ -49,7 +36,7 @@ const Reservation = () => {
               )}, ${moment().format("dddd")}`}</h4>
             </div>
           </div>
-          <div className="row">
+          {/* <div className="row">
             <div className="reservation-timeTable" data-aos="fade-up">
               {timings &&
                 timings.map((timing, index) => {
@@ -66,8 +53,9 @@ const Reservation = () => {
                   );
                 })}
             </div>
-          </div>
-          <div className="row">
+          </div> */}
+          <ReservationTimeTable />
+          {/* <div className="row">
             <div className="reservation-table" data-aos="fade-up">
               <div className="row reservation-table-4-seater-group-row">
                 {fourSeaters &&
@@ -142,9 +130,10 @@ const Reservation = () => {
                   })}
               </div>
             </div>
-          </div>
+          </div> */}
+          <ReservationTable />
 
-          <div className="row">
+          {/* <div className="row">
             <div className="reservation-color-code-group">
               <div className="reservation-color-code-item">
                 <div className="reservation-color-code-color reservation-color-code-color-reserved "></div>
@@ -159,9 +148,9 @@ const Reservation = () => {
                 <p className="reservation-color-code-name">Selected</p>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="row">
+          {/* <div className="row">
             <div className="reservation-seater-config-group">
               <div className="reservation-seater-config-item">
                 <img
@@ -188,19 +177,19 @@ const Reservation = () => {
                 <p className="reservation-seater-config-name">2 Seater</p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* menu section */}
           <Menu />
 
           {/* reservation list */}
-          <div className="row">
+          {/* <div className="row">
             <div className="section-title">
               <h3 data-aos="fade-up">Reservation List </h3>
             </div>
-          </div>
+          </div> */}
 
-          <div className="row">
+          {/* <div className="row">
             <div className="reservation-list-group">
               <p className="reservation-list-p">
                 Your table reservation :{" "}
@@ -224,7 +213,8 @@ const Reservation = () => {
                 Confirm
               </button>
             </div>
-          </div>
+          </div> */}
+          <ReservationList />
         </div>
       </section>
     </div>

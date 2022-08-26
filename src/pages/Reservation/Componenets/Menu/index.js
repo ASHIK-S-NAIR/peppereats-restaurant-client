@@ -1,5 +1,6 @@
 import { getMenuByCategory } from "api/menu";
 import React, { useState, useEffect } from "react";
+import useReservationStore from "setup/state-manager/reservationStore";
 import { getCategories } from "../../../../api/category";
 import "./style.css";
 
@@ -7,6 +8,13 @@ const Menu = () => {
   const [menuCategoryItems, setMenuCategoryItems] = useState([]);
   const [menuCategory, setMenuCategory] = useState();
   const [menu, setMenu] = useState([]);
+
+  const { addReservationOrder, removeReservationOrder } = useReservationStore(
+    (state) => ({
+      addReservationOrder: state.addReservationOrder,
+      removeReservationOrder: state.removeReservationOrder,
+    })
+  );
 
   const fetchMenu = async () => {
     try {
@@ -51,8 +59,14 @@ const Menu = () => {
 
   const menuItemD = (menuItem, index) => {
     return (
-      <div key={index} className="menu-item" data-aos="fade-up-right">
-        <div className="menu-item-title">
+      <div
+        key={index}
+        className="menu-item menu-item-border"
+        data-aos="fade-up-right"
+        onClick={() => removeReservationOrder(menuItem._id)}
+      >
+        {" "}
+        <div className="menu-item-title ">
           <img src={menuItem.menuImage.url} alt="menu item thumbnail" />
           <div className="menu-item-title-sub">
             <h3>{menuItem.menuName}</h3>

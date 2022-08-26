@@ -6,6 +6,8 @@ import ViewIcon from "assets/images/temp/View.svg";
 import EditIcon from "assets/images/temp/Edit.svg";
 import RemoveIcon from "assets/images/temp/Remove.svg";
 import DeleteMenu from "./Components/DeleteMenu";
+import ViewMenu from "../Menu/Components/ViewMenu";
+import { getCategory } from "api/category";
 
 const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -19,6 +21,19 @@ const Menu = () => {
         return console.log(data.error);
       } else {
         return setMenu(data);
+      }
+    } catch (error) {
+      return console.log(error);
+    }
+  };
+
+  const loadCategoryName = async (categoryId) => {
+    try {
+      const data = await getCategory(categoryId);
+      if (data.error) {
+        return console.log(data.error);
+      } else {
+        return data.categoryName;
       }
     } catch (error) {
       return console.log(error);
@@ -43,7 +58,7 @@ const Menu = () => {
 
   useEffect(() => {
     loadMenu();
-  }, []);
+  }, [subSection]);
 
   return (
     <section className="adminPanel-right-section">
@@ -81,12 +96,16 @@ const Menu = () => {
                     </td>
                     <td className="adminPanel-right-table-body-value">
                       {menuItem.menuCategory}
+                      {/* {loadCategoryName(menuItem.menuCategory)} */}
                     </td>
                     <td className="adminPanel-right-table-body-value">
                       {moment(menuItem.createdAt).format("DD-MMM-yyyy")}
                     </td>
                     <td className="adminPanel-right-table-body-value">
-                      <button className="adminPanel-right-table-button">
+                      <button
+                        className="adminPanel-right-table-button"
+                        onClick={() => handleView(menuItem)}
+                      >
                         <img
                           src={ViewIcon}
                           alt=""
@@ -119,6 +138,9 @@ const Menu = () => {
       </div>
       {subSection === "deleteMenu" && (
         <DeleteMenu menu={menuItem} setSubSection={setSubSection} />
+      )}
+      {subSection === "viewMenu" && (
+        <ViewMenu menu={menuItem} setSubSection={setSubSection} />
       )}
     </section>
   );

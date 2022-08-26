@@ -50,6 +50,10 @@
   position: relative;
 }
 
+.menu-item-border{
+  /* border: 1px solid var(--main-color); */
+}
+
 .menu-item::after {
   position: absolute;
   content: "";
