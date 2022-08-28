@@ -1,26 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import closeIcon from "assets/images/icons/close.svg";
 import "./style.css";
-import { getCategory, updateCategory } from "api/category";
+import { updateCategory } from "api/category";
 import { isAuthenticated } from "api/auth";
 
 const UpdateCategory = ({ category, setSubSection }) => {
-  const [categoryName, setCategoryName] = useState("");
+  const [categoryName, setCategoryName] = useState(category.categoryName);
 
   const { admin, token } = isAuthenticated();
-
-  const loadCategory = async () => {
-    try {
-      const data = await getCategory(category._id);
-      if (data.error) {
-        return console.log(data.error);
-      } else {
-        return setCategoryName(data.categoryName);
-      }
-    } catch (error) {
-      return console.log(error);
-    }
-  };
 
   const onSubmit = async () => {
     try {
@@ -40,9 +27,6 @@ const UpdateCategory = ({ category, setSubSection }) => {
     }
   };
 
-  useEffect(() => {
-    loadCategory();
-  }, []);
 
   return (
     <div className="updateCategory-section">

@@ -3,18 +3,13 @@ import { API } from "../setup/backend-manager";
 
 export const createMenu = async (
   userId,
-  { menuName, menuCategory, menuPrice, menuDescription },
+  formData,
   token
 ) => {
   try {
     const { data } = await axios.post(
       `${API}/menu/createmenu/${userId}`,
-      {
-        menuName,
-        menuCategory,
-        menuPrice,
-        menuDescription,
-      },
+     formData,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -54,11 +49,12 @@ export const getMenu = async (menuId) => {
   }
 };
 
-export const updateMenu = async (menuId, userId, body, token) => {
+export const updateMenu = async (menuId, userId, formData, token) => {
+  console.log("formData", formData);
   try {
     const { data } = await axios.put(
       `${API}/menu/updatemenu/${menuId}/${userId}`,
-      body,
+      formData,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

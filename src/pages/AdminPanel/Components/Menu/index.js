@@ -7,7 +7,9 @@ import EditIcon from "assets/images/temp/Edit.svg";
 import RemoveIcon from "assets/images/temp/Remove.svg";
 import DeleteMenu from "./Components/DeleteMenu";
 import ViewMenu from "../Menu/Components/ViewMenu";
+import AddMenu from "./Components/AddMenu";
 import { getCategory } from "api/category";
+import UpdateMenu from "./Components/UpdateMenu";
 
 const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -65,7 +67,12 @@ const Menu = () => {
       <div className="row">
         <div className="adminPanel-right-header-section">
           <h1 className="adminPanel-right-header">Menu</h1>
-          <button className="btn adminPanel-right-addBtn">Add Menu</button>
+          <button
+            className="btn adminPanel-right-addBtn"
+            onClick={() => handleAdd()}
+          >
+            Add Menu
+          </button>
         </div>
       </div>
       <div className="row">
@@ -112,7 +119,10 @@ const Menu = () => {
                           className="adminPanel-right-table-icon "
                         />
                       </button>
-                      <button className="adminPanel-right-table-button">
+                      <button
+                        className="adminPanel-right-table-button"
+                        onClick={() => handleUpdate(menuItem)}
+                      >
                         <img
                           src={EditIcon}
                           alt=""
@@ -141,6 +151,10 @@ const Menu = () => {
       )}
       {subSection === "viewMenu" && (
         <ViewMenu menu={menuItem} setSubSection={setSubSection} />
+      )}
+      {subSection === "addMenu" && <AddMenu setSubSection={setSubSection} />}
+      {subSection === "updateMenu" && (
+        <UpdateMenu menu={menuItem} setSubSection={setSubSection} />
       )}
     </section>
   );
