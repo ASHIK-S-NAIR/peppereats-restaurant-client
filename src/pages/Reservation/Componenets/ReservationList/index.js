@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import moment from "moment";
 import useReservationStore from "setup/state-manager/reservationStore";
+import { getMenu } from "api/menu";
 
 const ReservationList = () => {
   const {
@@ -14,6 +15,21 @@ const ReservationList = () => {
     reservationTime: state.reservationTime,
     setReservationTime: state.setReservationTime,
   }));
+
+  const loadMenu = async (menuId) => {
+    try {
+      const data = await getMenu(menuId);
+      if (data.error) {
+        return console.log(data.error);
+      }
+      // console.group("getMenu", data)
+      return data;
+    } catch (error) {
+      return console.log(error);
+    }
+  };
+
+  // console.log(loadMenu('62ed30f175ca4d3911f8344d')) 
 
   const onSubmit = async () => {
     //
@@ -47,10 +63,40 @@ const ReservationList = () => {
               {reservationOrders.length === 0
                 ? "No preOrders"
                 : reservationOrders.map((reservationOrder, index) => {
-                    return ` ${ reservationOrder.orderId},`;
+                    return ` ${reservationOrder.orderId},`;
                   })}
             </span>
           </p>
+          <div className="reservation-list-preorders">
+            {reservationOrders.length === 0
+              ? ""
+              : reservationOrders.map((reservationOrder, index) => {
+                  return (
+                    <div className="reservation-list-preorder" key={index}>
+                      {/* <div className="menu-item-title ">
+                        <img
+                          src={getMenu(reservationOrder.orderId).menuImage.url}
+                          alt="menu item thumbnail"
+                        />
+                        <div className="menu-item-title-sub">
+                          <h3>{getMenu(reservationOrder.orderId).menuName}</h3>
+                          <p>
+                            {getMenu(reservationOrder.orderId).menuDescription}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="menu-item-right">
+                        <div className="menu-item-price">
+                          ${getMenu(reservationOrder.orderId).menuPrice}
+                        </div>
+                        <button className="menu-item-add-btn">Add</button>
+                      </div> */}
+                      {/* { console.log(loadMenu(reservationOrder?.orderId)) } */}
+                      {/* <p >{loadMenu(reservationOrder.orderId).menuPrice}</p> */}
+                    </div>
+                  );
+                })}
+          </div>
           <button
             className="btn reservation-list-confirm-btn"
             onClick={onSubmit}

@@ -7,18 +7,18 @@ import ReservationTable from "./Componenets/ReservationTable";
 import ReservationList from "./Componenets/ReservationList";
 
 const Reservation = () => {
-  const [time, setTime] = useState("05:00PM");
-  const [table, setTable] = useState("");
-  const [preorders, setPreorders] = useState([]);
+  // const [time, setTime] = useState("05:00PM");
+  // const [table, setTable] = useState("");
+  // const [preorders, setPreorders] = useState([]);
 
-  const timings = [
-    "05:00PM",
-    "06:00PM",
-    "07:00PM",
-    "08:00PM",
-    "09:00PM",
-    "10:00PM",
-  ];
+  // const timings = [
+  //   "05:00PM",
+  //   "06:00PM",
+  //   "07:00PM",
+  //   "08:00PM",
+  //   "09:00PM",
+  //   "10:00PM",
+  // ];
 
   return (
     <div className="reservation">

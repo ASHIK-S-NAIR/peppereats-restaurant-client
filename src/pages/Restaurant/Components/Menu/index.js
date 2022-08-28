@@ -1,16 +1,17 @@
 import { getMenuByCategory } from "api/menu";
 import React, { useState, useEffect } from "react";
-import { getCategories } from "../../../../api/category";
+import { getCategories } from "api/category";
+import MenuItem from "./components/MenuItem";
 import "./style.css";
 
 const Menu = () => {
-  const [menuCategoryItems, setMenuCategoryItems] = useState([]);
-  const [menuCategory, setMenuCategory] = useState();
+  const [menuCategory, setMenuCategory] = useState([]);
+  const [menuSelectedCategory, setMenuSelectedCategory] = useState();
   const [menu, setMenu] = useState([]);
 
   const fetchMenu = async () => {
     try {
-      const data = await getMenuByCategory(menuCategory._id);
+      const data = await getMenuByCategory(menuSelectedCategory._id);
       if (data.error) {
         return console.log(data.error);
       }
@@ -26,33 +27,21 @@ const Menu = () => {
       if (data.error) {
         return console.log(data.error);
       }
-      return setMenuCategoryItems(data);
+      return setMenuCategory(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const menuBtn = (category, index) => {
-    return (
-      <button
-        key={index}
-        type="button"
-        className={`menu-tab-item ${
-          menuCategory.categoryName === category.categoryName ? "active" : ""
-        }`}
-        data-target={category.categoryName}
-        value={category.categoryName}
-        onClick={() => setMenuCategory(category)}
-      >
-        {category.categoryName}
-      </button>
-    );
-  };
-
   const menuItemD = (menuItem, index) => {
     return (
-      <div key={index} className="menu-item" data-aos="fade-up-right">
-        <div className="menu-item-title">
+      <div
+        key={index}
+        className="menu-item"
+        data-aos="fade-up-right"
+      >
+        {" "}
+        <div className="menu-item-title ">
           <img src={menuItem.menuImage.url} alt="menu item thumbnail" />
           <div className="menu-item-title-sub">
             <h3>{menuItem.menuName}</h3>
@@ -69,30 +58,30 @@ const Menu = () => {
   }, []);
 
   useEffect(() => {
-    setMenuCategory(menuCategoryItems[0]);
-  }, [menuCategoryItems]);
+    setMenuSelectedCategory(menuCategory[0]);
+  }, [menuCategory]);
 
   useEffect(() => {
-    if (menuCategory) {
+    if (menuSelectedCategory) {
       fetchMenu();
     }
-  }, [menuCategory]);
+  }, [menuSelectedCategory]);
 
   return (
     <section className="menu-section sec-padding" id="our-menu">
       <div className="container">
         <div className="row">
-          <div className="section-title">
-            <h2 data-title="order-now" data-aos="fade-up">
-              Our menu
-            </h2>
-          </div>
-        </div>
-        <div className="row">
           <div className="menu-tabs" data-aos="fade-up">
-            {menuCategory &&
-              menuCategoryItems.map((menuCategoryItem, index) => {
-                return menuBtn(menuCategoryItem, index);
+            {menuSelectedCategory &&
+              menuCategory.map((menuCategoryItem, index) => {
+                return (
+                  <MenuItem
+                    key={index}
+                    menuCategoryItem={menuCategoryItem}
+                    menuSelectedCategory={menuSelectedCategory}
+                    setMenuSelectedCategory={setMenuSelectedCategory}
+                  />
+                );
               })}
           </div>
         </div>
