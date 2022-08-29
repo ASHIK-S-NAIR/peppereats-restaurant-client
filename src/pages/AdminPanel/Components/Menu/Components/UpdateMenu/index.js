@@ -20,6 +20,36 @@ const UpdateMenu = ({ menu, setSubSection }) => {
 
   const { admin, token } = isAuthenticated();
 
+  const loadMenu = async (menuId) => {
+    try {
+      const data = await getMenu(menuId);
+      if (data.error) {
+        return console.log(data.error);
+      }
+      return setValues({
+        ...values,
+        menuName: data.menuName,
+        menuPrice: data.menuPrice,
+        menuCategory: data.menuCategory,
+        menuDescription: data.menuDescription,
+      });
+    } catch (error) {
+      return console.log(error);
+    }
+  };
+
+  const loadCategory = async () => {
+    try {
+      const data = await getCategories();
+      if (data.error) {
+        return console.log(data.error);
+      }
+      return setCategories(data);
+    } catch (error) {
+      return console.log(error);
+    }
+  };
+
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
   };
@@ -29,43 +59,7 @@ const UpdateMenu = ({ menu, setSubSection }) => {
     setMenuFile(file);
   };
 
-  const loadCategory = async () => {
-    try {
-      const data = await getCategories();
-      if (data.error) {
-        return console.log(data.error);
-      }
-      console.log("Categories", data);
-      return setCategories(data);
-    } catch (error) {
-      return console.log(error);
-    }
-  };
-
-  const loadValues = async () => {
-    try {
-      const data = await getMenu(menu._id);
-      if (data.error) {
-        return console.log(data.error);
-      }
-      return setValues({
-        ...values,
-        menuName: data.menuName,
-        menuDescription: data.menuDescription,
-        menuPrice: data.menuPrice,
-        menuCategory: data.menuCategory,
-      });
-    } catch (error) {
-      return console.log(error);
-    }
-  };
-
-  const onSubmit = async (e) => {
-
-    // if(menuFile){
-
-    // }
-
+  const onSubmit = async () => {
     const formData = new FormData();
     formData.append("menuName", menuName);
     formData.append("menuDescription", menuDescription);
@@ -73,8 +67,6 @@ const UpdateMenu = ({ menu, setSubSection }) => {
     formData.append("menuCategory", menuCategory);
     formData.append("menuImage", menuFile);
     try {
-      console.log("menuNmae", menuName);
-      console.log("formData", formData);
       const data = await updateMenu(menu._id, admin._id, formData, token);
       if (data.error) {
         return console.log(data.error);
@@ -87,7 +79,7 @@ const UpdateMenu = ({ menu, setSubSection }) => {
   };
 
   useEffect(() => {
-    loadValues();
+    loadMenu(menu._id);
   }, []);
 
   useEffect(() => {
@@ -99,7 +91,7 @@ const UpdateMenu = ({ menu, setSubSection }) => {
       <div className="cover-bg">
         <div className="subSection addCategory-subSection">
           <div className="subSection-header-section">
-            <h3 className="subSection-header">Add Category</h3>
+            <h3 className="subSection-header">Update Category</h3>
             <button
               className="subSection-header-close-btn"
               onClick={() => setSubSection("")}
