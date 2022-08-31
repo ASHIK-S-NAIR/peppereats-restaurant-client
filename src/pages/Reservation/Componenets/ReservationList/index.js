@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import moment from "moment";
 import useReservationStore from "setup/state-manager/reservationStore";
 import { getMenu } from "api/menu";
+import { useNavigate } from "react-router-dom";
 
 const ReservationList = () => {
   const {
@@ -15,6 +16,8 @@ const ReservationList = () => {
     reservationTime: state.reservationTime,
     setReservationTime: state.setReservationTime,
   }));
+
+  const Navigate = useNavigate();
 
   const loadMenu = async (menuId) => {
     try {
@@ -32,7 +35,9 @@ const ReservationList = () => {
   // console.log(loadMenu('62ed30f175ca4d3911f8344d')) 
 
   const onSubmit = async () => {
-    //
+   if(reservationTable && reservationTime){
+    return Navigate("/customerlogin");
+   }
   };
 
   useEffect(() => {
@@ -99,7 +104,7 @@ const ReservationList = () => {
           </div>
           <button
             className="btn reservation-list-confirm-btn"
-            onClick={onSubmit}
+            onClick={() => onSubmit()}
           >
             Confirm
           </button>

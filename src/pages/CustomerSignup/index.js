@@ -23,7 +23,7 @@ const CustomerSignup = () => {
           </div>
         </div>
         <div className="row">
-          <form className="customerSignup-form form" onSubmit={onSubmit}>
+          <form className="customerSignup-form form" onSubmit={() => onSubmit}>
             <div className="form-input-sec">
               <label htmlFor="" className="form-label">
                 First Name
@@ -64,7 +64,7 @@ const CustomerSignup = () => {
               />
             </div>
             <div className="form-input-sec">
-              <button className="btn form-button" onClick={onSubmit}>
+              <button className="btn form-button" type="submit" onClick={() => onSubmit}>
                 Next
               </button>
             </div>

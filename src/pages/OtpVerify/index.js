@@ -1,11 +1,27 @@
+import { customerLoginVerify } from "api/auth";
 import React, { useState } from "react";
+import useCustomerStore from "setup/state-manager/customerStore";
 import "./style.css";
 
 const OtpVerify = () => {
-  const [userOtp, setUserOtp] = useState("");
+  const [userOtp, setUserOtp] = useState(0);
 
-  const onSubmit = async () => {
-    //
+  const customerPhoneNumber = useCustomerStore((state) => state.customerPhoneNumber);
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const userPhoneNumber = customerPhoneNumber
+    console.log("typeof customerPhoneNumberOTP", typeof userPhoneNumber)
+    console.log("typeof customerOTPOTp", typeof userOtp)
+    try {
+      const data = await customerLoginVerify(userPhoneNumber , userOtp);
+      if(data.error){
+        return console.log(data.error);
+      }
+      return console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -23,14 +39,14 @@ const OtpVerify = () => {
                 Enter the OTP code
               </label>
               <input
-                type="password"
+                type="number"
                 className="form-input"
                 value={userOtp}
                 onChange={(e) => setUserOtp(e.target.value)}
               />
             </div>
             <div className="form-input-sec">
-              <button className="btn form-button" onClick={onSubmit}>
+              <button className="btn form-button" type="submit" onClick={onSubmit}>
                 Verify
               </button>
             </div>

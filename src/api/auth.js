@@ -31,10 +31,10 @@ export const isAuthenticated = () => {
   }
 };
 
-export const customerLoginOtp = async ({ userPhoneNumber }) => {
+export const customerLoginOtp = async ( userPhoneNumber ) => {
   try {
     const { data } = await axios.post(`${API}/customerloginotp`, {
-      userPhoneNumber,
+      userPhoneNumber
     });
     return data;
   } catch (error) {
@@ -42,12 +42,15 @@ export const customerLoginOtp = async ({ userPhoneNumber }) => {
   }
 };
 
-export const customerLoginVerify = async ({ userPhoneNumber, otp }) => {
+export const customerLoginVerify = async ( userPhoneNumber, otp ) => {
   try {
+    console.log("typeof customerPhoneNumber", typeof userPhoneNumber)
+    console.log("typeof customerOTP", typeof otp)
     const { data } = await axios.post(`${API}/customerloginverify`, {
       userPhoneNumber,
       otp,
     });
+    console.log("customerloginverfiyApi", data)
     return data;
   } catch (error) {
     return error;

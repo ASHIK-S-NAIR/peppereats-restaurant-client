@@ -1,11 +1,37 @@
 import React, { useState } from "react";
+import { customerLoginOtp } from "api/auth";
+import { useNavigate } from "react-router-dom";
+import useCustomerStore from "setup/state-manager/customerStore";
 import "./style.css";
 
 const CustomerLogin = () => {
-  const [userPhoneNumber, setUserPhoneNumber] = useState();
+  const [userPhoneNumber, setUserPhoneNumber] = useState(0);
 
-  const onSubmit = async () => {
-    //
+  const { setCustomerPhoneNumber } = useCustomerStore(
+    (state) => ({
+      setCustomerPhoneNumber: state.setCustomerPhoneNumber,
+    })
+  );
+
+  const Navigate = useNavigate();
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    setCustomerPhoneNumber(userPhoneNumber);
+    try {
+      const data = await customerLoginOtp(userPhoneNumber);
+      if (data.error) {
+        return console.log(data.error);
+      }
+      if (data.isCustomer === false) {
+        return Navigate("/customersignup");
+      }
+
+      return Navigate("/otpverify");
+    } catch (error) {
+      return console.log(error);
+    }
   };
 
   return (
@@ -30,7 +56,11 @@ const CustomerLogin = () => {
               />
             </div>
             <div className="form-input-sec">
-              <button className="btn form-button" onClick={onSubmit}>
+              <button
+                className="btn form-button"
+                type="submit"
+                onClick={onSubmit}
+              >
                 Next
               </button>
             </div>
