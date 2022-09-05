@@ -7,10 +7,10 @@ import { getCategories } from "api/category";
 
 const UpdateMenu = ({ menu, setSubSection }) => {
   const [values, setValues] = useState({
-    menuName: "",
-    menuDescription: "",
-    menuPrice: "",
-    menuCategory: "",
+    menuName: menu.menuName,
+    menuDescription: menu.menuDescription,
+    menuPrice: menu.menuPrice,
+    menuCategory: menu.menuCategory,
   });
   const [categories, setCategories] = useState([]);
 
@@ -19,24 +19,6 @@ const UpdateMenu = ({ menu, setSubSection }) => {
   const { menuName, menuDescription, menuPrice, menuCategory } = values;
 
   const { admin, token } = isAuthenticated();
-
-  const loadMenu = async (menuId) => {
-    try {
-      const data = await getMenu(menuId);
-      if (data.error) {
-        return console.log(data.error);
-      }
-      return setValues({
-        ...values,
-        menuName: data.menuName,
-        menuPrice: data.menuPrice,
-        menuCategory: data.menuCategory,
-        menuDescription: data.menuDescription,
-      });
-    } catch (error) {
-      return console.log(error);
-    }
-  };
 
   const loadCategory = async () => {
     try {
@@ -79,10 +61,6 @@ const UpdateMenu = ({ menu, setSubSection }) => {
   };
 
   useEffect(() => {
-    loadMenu(menu._id);
-  }, []);
-
-  useEffect(() => {
     loadCategory();
   }, []);
 
@@ -91,7 +69,7 @@ const UpdateMenu = ({ menu, setSubSection }) => {
       <div className="cover-bg">
         <div className="subSection addCategory-subSection">
           <div className="subSection-header-section">
-            <h3 className="subSection-header">Update Category</h3>
+            <h3 className="subSection-header">Update Menu</h3>
             <button
               className="subSection-header-close-btn"
               onClick={() => setSubSection("")}

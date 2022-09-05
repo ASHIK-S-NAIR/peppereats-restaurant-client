@@ -5,11 +5,12 @@ import useCustomerStore from "setup/state-manager/customerStore";
 import "./style.css";
 
 const CustomerLogin = () => {
-  const [userPhoneNumber, setUserPhoneNumber] = useState(0);
+  const [userPhoneNumber, setUserPhoneNumber] = useState();
 
-  const { setCustomerPhoneNumber } = useCustomerStore(
+  const { setCustomerPhoneNumber, setCustomerIsCustomer } = useCustomerStore(
     (state) => ({
       setCustomerPhoneNumber: state.setCustomerPhoneNumber,
+      setCustomerIsCustomer: state.setCustomerIsCustomer,
     })
   );
 
@@ -28,6 +29,7 @@ const CustomerLogin = () => {
         return Navigate("/customersignup");
       }
 
+      setCustomerIsCustomer(true);
       return Navigate("/otpverify");
     } catch (error) {
       return console.log(error);

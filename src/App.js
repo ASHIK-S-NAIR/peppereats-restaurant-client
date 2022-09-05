@@ -26,8 +26,8 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-        <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/" element={<Restaurant />} />
+          <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/customerlogin" element={<CustomerLogin />} />
           <Route path="/otpverify" element={<OtpVerify />} />

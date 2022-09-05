@@ -45,6 +45,11 @@ const reservationStore = (set) => ({
       ),
     }));
   },
+  emptyReservationOrder: () => {
+    set((state) => ({
+      reservationOrders: [],
+    }));
+  },
   setReservationTable: (table) => {
     set((state) => ({
       reservationTable: table,
@@ -53,6 +58,13 @@ const reservationStore = (set) => ({
   setReservationTime: (time) => {
     set((state) => ({
       reservationTime: time,
+    }));
+  },
+  initialReservationDetails: () => {
+    set((state) => ({
+      reservationTime: "05:00PM",
+      reservationTable: "",
+      reservationOrders: [],
     }));
   },
 });

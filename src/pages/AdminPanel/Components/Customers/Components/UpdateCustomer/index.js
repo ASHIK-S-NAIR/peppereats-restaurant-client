@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import closeIcon from "assets/images/icons/close.svg";
 import "./style.css";
-import { getCustomer, updateCustomer } from "api/customer";
+import { updateCustomer } from "api/customer";
 import { isAuthenticated } from "api/auth";
 
 const UpdateCustomer = ({ customer, setSubSection }) => {
   const [values, setValues] = useState({
-    customerFirstName: "",
-    customerLastName: "",
-    customerPhoneNumber: "",
-    customerEmail: "",
+    customerFirstName: customer.customerFirstName,
+    customerLastName: customer.customerLastName,
+    customerPhoneNumber: customer.customerPhoneNumber,
+    customerEmail: customer.customerEmail,
   });
-
-  console.log("values", values);
 
   const {
     customerFirstName,
@@ -22,25 +20,6 @@ const UpdateCustomer = ({ customer, setSubSection }) => {
   } = values;
 
   const { admin, token } = isAuthenticated();
-
-  const loadCustomer = async () => {
-    try {
-      const data = await getCustomer(customer._id, admin._id, token);
-      if (data.error) {
-        return console.log(data.error);
-      } else {
-        return setValues({
-          ...values,
-          customerFirstName: data.customerFirstName,
-          customerLastName: data.customerLastName,
-          customerPhoneNumber: data.customerPhoneNumber,
-          customerEmail: data.customerEmail,
-        });
-      }
-    } catch (error) {
-      return console.log(error);
-    }
-  };
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
@@ -58,10 +37,6 @@ const UpdateCustomer = ({ customer, setSubSection }) => {
       return console.log(error);
     }
   };
-
-  useEffect(() => {
-    loadCustomer();
-  }, []);
 
   return (
     <div className="updateCustomer-section">

@@ -8,7 +8,7 @@ export const createMenu = async (
 ) => {
   try {
     const { data } = await axios.post(
-      `${API}/menu/createmenu/${userId}`,
+      `${API}/menu/${userId}`,
      formData,
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -23,7 +23,7 @@ export const createMenu = async (
 export const getMenuByCategory = async (menuCategoryId) => {
   try {
     const { data } = await axios.get(
-      `${API}/menu/getmenubycategory/${menuCategoryId}`
+      `${API}/menu/${menuCategoryId}`
     );
     return data;
   } catch (error) {
@@ -33,7 +33,7 @@ export const getMenuByCategory = async (menuCategoryId) => {
 
 export const getAllMenu = async () => {
   try {
-    const { data } = await axios.get(`${API}/menu/getallmenu`);
+    const { data } = await axios.get(`${API}/menu`);
     return data;
   } catch (error) {
     return error;
@@ -42,7 +42,7 @@ export const getAllMenu = async () => {
 
 export const getMenu = async (menuId) => {
   try {
-    const { data } = await axios.get(`${API}/menu/getmenu/${menuId}`);
+    const { data } = await axios.get(`${API}/menu/${menuId}`);
     return data;
   } catch (error) {
     return error;
@@ -53,7 +53,7 @@ export const updateMenu = async (menuId, userId, formData, token) => {
   console.log("formData", formData);
   try {
     const { data } = await axios.put(
-      `${API}/menu/updatemenu/${menuId}/${userId}`,
+      `${API}/menu/${menuId}/${userId}`,
       formData,
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -68,7 +68,7 @@ export const updateMenu = async (menuId, userId, formData, token) => {
 export const updateMenuImage = async (menuId, userId, token) => {
   try {
     const { data } = await axios.put(
-      `${API}/menu/updatemenuimage/${menuId}/${userId}`,
+      `${API}/menu/${menuId}/${userId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -82,7 +82,7 @@ export const updateMenuImage = async (menuId, userId, token) => {
 export const deleteMenu = async (menuId, userId, token) => {
   try {
     const { data } = await axios.delete(
-      `${API}/menu/deletemenu/${menuId}/${userId}`,
+      `${API}/menu/${menuId}/${userId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

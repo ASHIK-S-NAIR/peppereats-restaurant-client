@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 import Menu from "./Componenets/Menu";
 import "./style.css";
 import ReservationTimeTable from "./Componenets/ReservationTimeTable";
 import ReservationTable from "./Componenets/ReservationTable";
 import ReservationList from "./Componenets/ReservationList";
+import useReservationStore from "setup/state-manager/reservationStore";
 
 const Reservation = () => {
+  const { initialReservationDetails } = useReservationStore((state) => ({
+    initialReservationDetails: state.initialReservationDetails,
+  }));
+
+  useEffect(() => {
+    initialReservationDetails();
+  }, []);
 
   return (
     <div className="reservation">

@@ -4,7 +4,7 @@ import { API } from "../setup/backend-manager";
 export const getAllCustomers = async (adminId, token) => {
   try {
     const { data } = await axios.get(
-      `${API}/customer/getallcustomers/${adminId}`,
+      `${API}/customer/${adminId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -18,7 +18,7 @@ export const getAllCustomers = async (adminId, token) => {
 export const getCustomer = async (customerId, adminId, token) => {
   try {
     const { data } = await axios.get(
-      `${API}/customer/getcustomer/${customerId}/${adminId}`,
+      `${API}/customer/${customerId}/${adminId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -32,7 +32,7 @@ export const getCustomer = async (customerId, adminId, token) => {
 export const updateCustomer = async (customerId, adminId, body, token) => {
   try {
     const { data } = await axios.put(
-      `${API}/customer/updatecustomer/${customerId}/${adminId}`,
+      `${API}/customer/${customerId}/${adminId}`,
       body,
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -47,7 +47,7 @@ export const updateCustomer = async (customerId, adminId, body, token) => {
 export const deleteCustomer = async (customerId, adminId, token) => {
   try {
     const { data } = await axios.delete(
-      `${API}/customer/deletecustomer/${customerId}/${adminId}`,
+      `${API}/customer/${customerId}/${adminId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

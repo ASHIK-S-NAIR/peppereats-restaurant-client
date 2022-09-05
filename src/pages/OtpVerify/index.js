@@ -1,4 +1,4 @@
-import { customerLoginVerify } from "api/auth";
+import { customerLoginVerify, customerSignupVerify } from "api/auth";
 import React, { useState } from "react";
 import useCustomerStore from "setup/state-manager/customerStore";
 import "./style.css";
@@ -6,19 +6,50 @@ import "./style.css";
 const OtpVerify = () => {
   const [userOtp, setUserOtp] = useState(0);
 
-  const customerPhoneNumber = useCustomerStore((state) => state.customerPhoneNumber);
+  const {
+    customerPhoneNumber,
+    customerFirstName,
+    customerLastName,
+    customerEmail,
+    customerIsCustomer,
+  } = useCustomerStore((state) => ({
+    customerPhoneNumber: state.customerPhoneNumber,
+    customerFirstName: state.customerFirstName,
+    customerLastName: state.customerLastName,
+    customerEmail: state.customerEmail,
+    customerIsCustomer: state.customerIsCustomer,
+  }));
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const userPhoneNumber = customerPhoneNumber
-    console.log("typeof customerPhoneNumberOTP", typeof userPhoneNumber)
-    console.log("typeof customerOTPOTp", typeof userOtp)
+    const userPhoneNumber = customerPhoneNumber;
+    console.log("typeof customerPhoneNumberOTP", typeof userPhoneNumber);
+    console.log("typeof customerOTPOTp", typeof userOtp);
     try {
-      const data = await customerLoginVerify(userPhoneNumber , userOtp);
-      if(data.error){
-        return console.log(data.error);
+      if (customerIsCustomer) {
+        const data = await customerLoginVerify(userPhoneNumber, userOtp);
+
+        if (data.error) {
+          return console.log(data.error);
+        }
+        return console.log(data);
+      } else {
+        const userFirstName = customerFirstName;
+        const userLastName = customerLastName;
+        const userEmail = customerEmail;
+        const data = await customerSignupVerify(
+          userPhoneNumber,
+          userFirstName,
+          userLastName,
+          userEmail,
+          userOtp
+        );
+
+        if (data.error) {
+          return console.log(data.error);
+        }
+        return console.log(data);
       }
-      return console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +77,11 @@ const OtpVerify = () => {
               />
             </div>
             <div className="form-input-sec">
-              <button className="btn form-button" type="submit" onClick={onSubmit}>
+              <button
+                className="btn form-button"
+                type="submit"
+                onClick={onSubmit}
+              >
                 Verify
               </button>
             </div>

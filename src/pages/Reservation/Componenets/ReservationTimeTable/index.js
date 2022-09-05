@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import useReservationStore from "setup/state-manager/reservationStore";
 
 const ReservationTimeTable = () => {
@@ -17,6 +17,10 @@ const ReservationTimeTable = () => {
     "09:00PM",
     "10:00PM",
   ];
+
+  useEffect(() => {
+    setReservationTime("05:00PM");
+  }, []);
   return (
     <section className="reservationTimeTable">
       <div className="row">

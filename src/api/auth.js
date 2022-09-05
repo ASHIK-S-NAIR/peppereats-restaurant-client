@@ -3,7 +3,7 @@ import { API } from "../setup/backend-manager";
 
 export const adminLogin = async (userEmail, userPassword) => {
   try {
-    const { data } = await axios.post(`${API}/adminlogin`, {
+    const { data } = await axios.post(`${API}/admin/login`, {
       userEmail,
       userPassword,
     });
@@ -33,7 +33,7 @@ export const isAuthenticated = () => {
 
 export const customerLoginOtp = async ( userPhoneNumber ) => {
   try {
-    const { data } = await axios.post(`${API}/customerloginotp`, {
+    const { data } = await axios.post(`${API}/customer/loginotp`, {
       userPhoneNumber
     });
     return data;
@@ -46,20 +46,19 @@ export const customerLoginVerify = async ( userPhoneNumber, otp ) => {
   try {
     console.log("typeof customerPhoneNumber", typeof userPhoneNumber)
     console.log("typeof customerOTP", typeof otp)
-    const { data } = await axios.post(`${API}/customerloginverify`, {
+    const { data } = await axios.post(`${API}/customer/loginverify`, {
       userPhoneNumber,
       otp,
     });
-    console.log("customerloginverfiyApi", data)
     return data;
   } catch (error) {
     return error;
   }
 };
 
-export const customerSignupOtp = async ({ userPhoneNumber }) => {
+export const customerSignupOtp = async ( userPhoneNumber ) => {
   try {
-    const { data } = await axios.post(`${API}/customerSignupOtp`, {
+    const { data } = await axios.post(`${API}/customer/signupotp`, {
       userPhoneNumber,
     });
     return data;
@@ -68,15 +67,15 @@ export const customerSignupOtp = async ({ userPhoneNumber }) => {
   }
 };
 
-export const customerSignupVerify = async ({
+export const customerSignupVerify = async (
   userPhoneNumber,
   userFirstName,
   userLastName,
   userEmail,
   otp,
-}) => {
+) => {
   try {
-    const { data } = await axios.post(`${API}/customerSignupVerify`, {
+    const { data } = await axios.post(`${API}/customer/signupverify`, {
       userPhoneNumber,
       userFirstName,
       userLastName,

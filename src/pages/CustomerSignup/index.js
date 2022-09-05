@@ -1,17 +1,51 @@
+import { customerSignupOtp } from "api/auth";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useCustomerStore from "setup/state-manager/customerStore";
 import "./style.css";
 
 const CustomerSignup = () => {
+  const {
+    customerPhoneNumber,
+    setCustomerFirstName,
+    setCustomerLastName,
+    setCustomerEmail,
+  } = useCustomerStore((state) => ({
+    customerPhoneNumber: state.customerPhoneNumber,
+    setCustomerFirstName: state.customerFirstName,
+    setCustomerLastName: state.customerLastName,
+    setCustomerEmail: state.customerEmail,
+  }));
+
   const [values, setValues] = useState({
+    userPhoneNumber: customerPhoneNumber,
     userFirstName: "",
     userLastName: "",
     userEmail: "",
   });
 
-  const { userFirstName, userLastName, userEmail } = values;
+  const { userPhoneNumber, userFirstName, userLastName, userEmail } = values;
 
-  const onSubmit = async () => {
-    //
+  const Navigate = useNavigate();
+
+  const onSubmit = async (event) => {
+    console.log("enter");
+    event.preventDefault();
+
+    setCustomerFirstName(userFirstName);
+    setCustomerLastName(userLastName);
+    setCustomerEmail(userEmail);
+
+    try {
+      const data = await customerSignupOtp(userPhoneNumber);
+      if (data.error) {
+        return console.log(data.error);
+      }
+
+      return Navigate("/otpverify");
+    } catch (error) {
+      return console.log(error);
+    }
   };
 
   return (
@@ -23,7 +57,7 @@ const CustomerSignup = () => {
           </div>
         </div>
         <div className="row">
-          <form className="customerSignup-form form" onSubmit={() => onSubmit}>
+          <form className="customerSignup-form form" onSubmit={onSubmit}>
             <div className="form-input-sec">
               <label htmlFor="" className="form-label">
                 First Name
@@ -64,7 +98,11 @@ const CustomerSignup = () => {
               />
             </div>
             <div className="form-input-sec">
-              <button className="btn form-button" type="submit" onClick={() => onSubmit}>
+              <button
+                className="btn form-button"
+                type="submit"
+                onClick={onSubmit}
+              >
                 Next
               </button>
             </div>

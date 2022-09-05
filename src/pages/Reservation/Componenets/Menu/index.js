@@ -10,12 +10,12 @@ const Menu = () => {
   const [menuSelectedCategory, setMenuSelectedCategory] = useState();
   const [menu, setMenu] = useState([]);
 
-  const { addReservationOrder, removeReservationOrder } = useReservationStore(
-    (state) => ({
+  const { addReservationOrder, removeReservationOrder} =
+    useReservationStore((state) => ({
       addReservationOrder: state.addReservationOrder,
       removeReservationOrder: state.removeReservationOrder,
-    })
-  );
+      emptyReservationOrder: state.emptyReservationOrder,
+    }));
 
   const fetchMenu = async () => {
     try {

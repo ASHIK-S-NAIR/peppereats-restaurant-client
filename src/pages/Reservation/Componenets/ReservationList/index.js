@@ -10,11 +10,13 @@ const ReservationList = () => {
     reservationTable,
     reservationTime,
     setReservationTime,
+    emptyReservationOrder,
   } = useReservationStore((state) => ({
     reservationOrders: state.reservationOrders,
     reservationTable: state.reservationTable,
     reservationTime: state.reservationTime,
     setReservationTime: state.setReservationTime,
+    emptyReservationOrder: state.emptyReservationOrder,
   }));
 
   const Navigate = useNavigate();
@@ -25,24 +27,18 @@ const ReservationList = () => {
       if (data.error) {
         return console.log(data.error);
       }
-      // console.group("getMenu", data)
       return data;
     } catch (error) {
       return console.log(error);
     }
   };
 
-  // console.log(loadMenu('62ed30f175ca4d3911f8344d')) 
 
   const onSubmit = async () => {
-   if(reservationTable && reservationTime){
-    return Navigate("/customerlogin");
-   }
+    if (reservationTable && reservationTime) {
+      return Navigate("/customerlogin");
+    }
   };
-
-  useEffect(() => {
-    setReservationTime("05:00PM");
-  }, []);
 
   return (
     <section className="reservationList">
