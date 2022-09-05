@@ -13,6 +13,8 @@ import CustomerSignup from "pages/CustomerSignup";
 import AdminPanel from "pages/AdminPanel";
 import AdminRoutes from "setup/auth-manager/AdminRoutes";
 
+import Test from "pages/Test";
+
 function App() {
   AOS.init();
 
@@ -38,6 +40,7 @@ function App() {
               </AdminRoutes>
             }
           />
+          <Route path="/test" element={<Test />} />
         </Routes>
         <Footer />
       </BrowserRouter>
