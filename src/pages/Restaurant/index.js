@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import About from "./Components/About";
 import Home from "./Components/Home";
 import Menu from "./Components/Menu";
@@ -13,6 +14,14 @@ const index = () => {
       <Menu />
       <Testimonial />
       <Team />
+      <div className="row">
+      <Link to="/reservation mob-reserveBtn">
+        {" "}
+        <button type="button" className="btn cta-btn">
+          RESERVE TABLE
+        </button>
+      </Link>
+      </div>
     </div>
   );
 };

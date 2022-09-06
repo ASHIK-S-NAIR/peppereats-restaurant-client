@@ -1,43 +1,58 @@
 import { customerSignupOtp } from "api/auth";
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import useCustomerStore from "setup/state-manager/customerStore";
+
 import "./style.css";
 
 const CustomerSignup = () => {
+  // const [values, setValues] = useState({
+  //   userPhoneNumber: customerPhoneNumber,
+  //   userFirstName: "",
+  //   userLastName: "",
+  //   userEmail: "",
+  // });
+
+  // const { userPhoneNumber, userFirstName, userLastName, userEmail } = values;
+
   const {
     customerPhoneNumber,
+    customerFirstName,
+    customerLastName,
+    customerEmail,
     setCustomerFirstName,
     setCustomerLastName,
     setCustomerEmail,
   } = useCustomerStore((state) => ({
     customerPhoneNumber: state.customerPhoneNumber,
-    setCustomerFirstName: state.customerFirstName,
-    setCustomerLastName: state.customerLastName,
-    setCustomerEmail: state.customerEmail,
+    customerFirstName: state.customerFirstName,
+    customerLastName: state.customerLastName,
+    customerEmail: state.customerEmail,
+    setCustomerFirstName: state.setCustomerFirstName,
+    setCustomerLastName: state.setCustomerLastName,
+    setCustomerEmail: state.setCustomerEmail,
   }));
 
-  const [values, setValues] = useState({
-    userPhoneNumber: customerPhoneNumber,
-    userFirstName: "",
-    userLastName: "",
-    userEmail: "",
-  });
-
-  const { userPhoneNumber, userFirstName, userLastName, userEmail } = values;
-
   const Navigate = useNavigate();
+
+  // setCustomerFirstName("Ashik S Nair");
+
+  // const handleCustomerFirstName = (firstName) => {
+  //   setCustomerPhoneNumber(firstName);
+  // };
+
+  console.log("customerFirstName", customerFirstName);
 
   const onSubmit = async (event) => {
     console.log("enter");
     event.preventDefault();
 
-    setCustomerFirstName(userFirstName);
-    setCustomerLastName(userLastName);
-    setCustomerEmail(userEmail);
+    // setCustomerFirstName(userFirstName);
+    // setCustomerLastName(userLastName);
+    // setCustomerEmail(userEmail);
 
     try {
-      const data = await customerSignupOtp(userPhoneNumber);
+      const data = await customerSignupOtp(customerPhoneNumber);
       if (data.error) {
         return console.log(data.error);
       }
@@ -65,10 +80,8 @@ const CustomerSignup = () => {
               <input
                 type="text"
                 className="form-input"
-                value={userFirstName}
-                onChange={(e) =>
-                  setValues({ ...values, userFirstName: e.target.value })
-                }
+                value={customerFirstName}
+                onChange={(e) => setCustomerFirstName(e.target.value)}
               />
             </div>
             <div className="form-input-sec">
@@ -78,10 +91,8 @@ const CustomerSignup = () => {
               <input
                 type="text"
                 className="form-input"
-                value={userLastName}
-                onChange={(e) =>
-                  setValues({ ...values, userLastName: e.target.value })
-                }
+                value={customerLastName}
+                onChange={(e) => setCustomerLastName(e.target.value)}
               />
             </div>
             <div className="form-input-sec">
@@ -91,10 +102,8 @@ const CustomerSignup = () => {
               <input
                 type="email"
                 className="form-input"
-                value={userEmail}
-                onChange={(e) =>
-                  setValues({ ...values, userEmail: e.target.value })
-                }
+                value={customerEmail}  
+                onChange={(e) => setCustomerEmail(e.target.value)}
               />
             </div>
             <div className="form-input-sec">

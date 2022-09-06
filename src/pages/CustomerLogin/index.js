@@ -5,23 +5,21 @@ import useCustomerStore from "setup/state-manager/customerStore";
 import "./style.css";
 
 const CustomerLogin = () => {
-  const [userPhoneNumber, setUserPhoneNumber] = useState();
 
-  const { setCustomerPhoneNumber, setCustomerIsCustomer } = useCustomerStore(
-    (state) => ({
+  const { customerPhoneNumber, setCustomerPhoneNumber, setCustomerIsCustomer } =
+    useCustomerStore((state) => ({
+      customerPhoneNumber: state.customerPhoneNumber,
       setCustomerPhoneNumber: state.setCustomerPhoneNumber,
       setCustomerIsCustomer: state.setCustomerIsCustomer,
-    })
-  );
+    }));
 
   const Navigate = useNavigate();
 
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    setCustomerPhoneNumber(userPhoneNumber);
     try {
-      const data = await customerLoginOtp(userPhoneNumber);
+      const data = await customerLoginOtp(customerPhoneNumber);
       if (data.error) {
         return console.log(data.error);
       }
@@ -53,8 +51,8 @@ const CustomerLogin = () => {
               <input
                 type="number"
                 className="form-input"
-                value={userPhoneNumber}
-                onChange={(e) => setUserPhoneNumber(e.target.value)}
+                value={customerPhoneNumber}
+                onChange={(e) => setCustomerPhoneNumber(e.target.value)}
               />
             </div>
             <div className="form-input-sec">

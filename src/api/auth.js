@@ -42,13 +42,14 @@ export const customerLoginOtp = async ( userPhoneNumber ) => {
   }
 };
 
-export const customerLoginVerify = async ( userPhoneNumber, otp ) => {
+export const customerLoginVerify = async ( userPhoneNumber, otp , reservationTable, reservationTime, reservationOrders) => {
   try {
     console.log("typeof customerPhoneNumber", typeof userPhoneNumber)
     console.log("typeof customerOTP", typeof otp)
     const { data } = await axios.post(`${API}/customer/loginverify`, {
       userPhoneNumber,
       otp,
+      reservationTable, reservationTime, reservationOrders
     });
     return data;
   } catch (error) {
@@ -73,6 +74,7 @@ export const customerSignupVerify = async (
   userLastName,
   userEmail,
   otp,
+  reservationTable, reservationTime, reservationOrders
 ) => {
   try {
     const { data } = await axios.post(`${API}/customer/signupverify`, {
@@ -81,6 +83,7 @@ export const customerSignupVerify = async (
       userLastName,
       userEmail,
       otp,
+      reservationTable, reservationTime, reservationOrders
     });
     return data;
   } catch (error) {

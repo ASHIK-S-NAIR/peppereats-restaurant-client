@@ -71,7 +71,7 @@ p {
   font-size: 16px;
 }
 
-input{
+input {
   border: none;
 }
 
@@ -154,12 +154,12 @@ section {
   background-color: var(--main-color);
 }
 
-.btn-unclickable{
+.btn-unclickable {
   pointer-events: none;
 }
 
-.form{
-  border: 1px solid var(--main-color);
+.form {
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 2em 1em;
   border-radius: 10px;
   display: grid;
@@ -167,29 +167,33 @@ section {
   margin: 0 auto;
 }
 
-.form-input-sec{
+.form-input-sec {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5em;
 }
 
-.form-label{
+.form-label {
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.95);
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 0.5em;
 }
 
-.form-input{
+.form-input {
   height: auto;
   padding: 0.5em 0.7em;
   font-size: 1.1rem;
   background-color: transparent;
-  border: 1px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   color: var(--main-color);
 }
 
-.form-button{
+.form-input:focus{
+  border: 2px solid var(--main-color);
+}
+
+.form-button {
   height: 2.8em;
   border-radius: 10px;
   background-color: white;
@@ -198,9 +202,9 @@ section {
   margin: 0 auto;
 }
 
-.form-button:hover{
+.form-button:hover {
   background-color: var(--main-color);
-  color: white;
+  color: var(--dark);
 }
 
 /* animation keyframe */
@@ -279,7 +283,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(242, 217, 141,0.3);
+  background-color: rgba(242, 217, 141, 0.3);
 }
 
 * {
@@ -289,10 +293,32 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* custom scroll-bar ends */
 
-@media (max-width: 767px){
-  .form{
+.mob-reserveBtn{
+  /* display: none; */
+  /* display: block;
+  position: fixed;
+  bottom: 1em;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  z-index: 999; */
+}
+
+@media (max-width: 767px) {
+  .form {
     padding: 2em 1em;
     width: 80%;
     margin: 0 auto;
+  }
+
+  .mob-reserveBtn{
+    display: flex;
+    position: fixed;
+    top: 1em;
+    left: 0;
+    right: 0;
+    width: 90vw;
+    height: 3em;
+    z-index: 1000;
   }
 }

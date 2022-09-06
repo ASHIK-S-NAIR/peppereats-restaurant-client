@@ -4,7 +4,7 @@ import { devtools, persist } from "zustand/middleware";
 
 const customerStore = (set) => ({
   customerPhoneNumber: 0,
-  customerFirstName: "",
+  customerFirstName: "Gautham",
   customerLastName: "",
   customerEmail: "",
   customerIsCustomer: false,

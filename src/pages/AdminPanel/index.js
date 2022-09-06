@@ -151,6 +151,126 @@ const AdminPanel = () => {
             {tabActive === "mail" && <Mail />}
           </div>
         </div>
+
+        <div className="row mob-adminPanel-row">
+          <div className="mob-adminPanel-top">
+            {tabActive === "reservation" && <Reservation />}
+            {tabActive === "category" && <Category />}
+            {tabActive === "menu" && <Menu />}
+            {tabActive === "customers" && <Customers />}
+            {tabActive === "mail" && <Mail />}
+          </div>
+
+          <div className="mob-adminPanel-bottom">
+            <ul className="mob-adminPanel-bottom-ul">
+              <li className="adminPanel-left-li">
+                <Link
+                  to={`/adminpanel/reservation`}
+                  className="adminPanel-left-link"
+                >
+                  <div
+                    className={`adminPanel-left-tag ${
+                      tabActive === "reservation" ? "active" : ""
+                    }`}
+                  >
+                    {" "}
+                    <img
+                      src={
+                        tabActive === "reservation"
+                          ? CategoryActiveIcon
+                          : CategoryInactiveIcon
+                      }
+                      alt=""
+                      className="adminPanel-left-icon"
+                    />
+                  </div>
+                </Link>
+              </li>
+              <li className="adminPanel-left-li">
+                <Link
+                  to={`/adminpanel/category`}
+                  className="adminPanel-left-link"
+                >
+                  <div
+                    className={`adminPanel-left-tag ${
+                      tabActive === "category" ? "active" : ""
+                    }`}
+                  >
+                    {" "}
+                    <img
+                      src={
+                        tabActive === "category"
+                          ? CategoryActiveIcon
+                          : CategoryInactiveIcon
+                      }
+                      alt=""
+                      className="adminPanel-left-icon"
+                    />
+                  </div>
+                </Link>
+              </li>
+              <li className="adminPanel-left-li">
+                <Link to={`/adminpanel/menu`} className="adminPanel-left-link">
+                  <div
+                    className={`adminPanel-left-tag ${
+                      tabActive === "menu" ? "active" : ""
+                    }`}
+                  >
+                    {" "}
+                    <img
+                      src={
+                        tabActive === "menu" ? MenuActiveIcon : MenuInactiveIcon
+                      }
+                      alt=""
+                      className="adminPanel-left-icon"
+                    />
+                  </div>
+                </Link>
+              </li>
+              <li className="adminPanel-left-li">
+                <Link
+                  to={`/adminpanel/customers`}
+                  className="adminPanel-left-link"
+                >
+                  <div
+                    className={`adminPanel-left-tag ${
+                      tabActive === "customers" ? "active" : ""
+                    }`}
+                  >
+                    {" "}
+                    <img
+                      src={
+                        tabActive === "customers"
+                          ? CustomerActiveIcon
+                          : CustomerInactiveIcon
+                      }
+                      alt=""
+                      className="adminPanel-left-icon"
+                    />
+                  </div>
+                </Link>
+              </li>
+              <li className="adminPanel-left-li">
+                <Link to={`/adminpanel/mail`} className="adminPanel-left-link">
+                  <div
+                    className={`adminPanel-left-tag ${
+                      tabActive === "mail" ? "active" : ""
+                    }`}
+                  >
+                    {" "}
+                    <img
+                      src={
+                        tabActive === "mail" ? mailActiveIcon : mailInactiveIcon
+                      }
+                      alt=""
+                      className="adminPanel-left-icon"
+                    />
+                  </div>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   );

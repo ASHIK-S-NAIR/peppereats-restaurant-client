@@ -1,10 +1,14 @@
 import { customerLoginVerify, customerSignupVerify } from "api/auth";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useCustomerStore from "setup/state-manager/customerStore";
+import useReservationStore from "setup/state-manager/reservationStore";
 import "./style.css";
 
 const OtpVerify = () => {
   const [userOtp, setUserOtp] = useState(0);
+
+  const Navigate= useNavigate(); 
 
   const {
     customerPhoneNumber,
@@ -20,6 +24,18 @@ const OtpVerify = () => {
     customerIsCustomer: state.customerIsCustomer,
   }));
 
+  // reservationCustomer: "string";
+  //     reservationTable: "string";
+  //     reservationTime: "string";
+  //     reservationOrder: "array";
+
+  const { reservationTable, reservationTime, reservationOrders } =
+    useReservationStore((state) => ({
+      reservationTable: state.reservationTable,
+      reservationTime: state.reservationTime,
+      reservationOrders: state.reservationOrders,
+    }));
+
   const onSubmit = async (event) => {
     event.preventDefault();
     const userPhoneNumber = customerPhoneNumber;
@@ -27,7 +43,7 @@ const OtpVerify = () => {
     console.log("typeof customerOTPOTp", typeof userOtp);
     try {
       if (customerIsCustomer) {
-        const data = await customerLoginVerify(userPhoneNumber, userOtp);
+        const data = await customerLoginVerify(userPhoneNumber, userOtp, reservationTable, reservationTime, reservationOrders);
 
         if (data.error) {
           return console.log(data.error);
@@ -42,13 +58,15 @@ const OtpVerify = () => {
           userFirstName,
           userLastName,
           userEmail,
-          userOtp
+          userOtp,
+          reservationTable, reservationTime, reservationOrders
         );
 
         if (data.error) {
           return console.log(data.error);
         }
-        return console.log(data);
+        console.log(data);
+        return Navigate("/");
       }
     } catch (error) {
       console.log(error);
