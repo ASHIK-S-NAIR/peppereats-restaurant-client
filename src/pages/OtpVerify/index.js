@@ -42,13 +42,13 @@ const OtpVerify = () => {
     console.log("typeof customerPhoneNumberOTP", typeof userPhoneNumber);
     console.log("typeof customerOTPOTp", typeof userOtp);
     try {
-      if (customerIsCustomer) {
+      if (customerIsCustomer === true) {
         const data = await customerLoginVerify(userPhoneNumber, userOtp, reservationTable, reservationTime, reservationOrders);
 
         if (data.error) {
           return console.log(data.error);
         }
-        return console.log(data);
+        console.log(data);
       } else {
         const userFirstName = customerFirstName;
         const userLastName = customerLastName;
@@ -66,8 +66,8 @@ const OtpVerify = () => {
           return console.log(data.error);
         }
         console.log(data);
-        return Navigate("/");
       }
+      return Navigate("/");
     } catch (error) {
       console.log(error);
     }

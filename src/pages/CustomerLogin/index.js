@@ -24,6 +24,7 @@ const CustomerLogin = () => {
         return console.log(data.error);
       }
       if (data.isCustomer === false) {
+        setCustomerIsCustomer(false);
         return Navigate("/customersignup");
       }
 
