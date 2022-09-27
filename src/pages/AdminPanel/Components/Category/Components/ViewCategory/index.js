@@ -59,13 +59,14 @@ const ViewCategory = ({ category, setSubSection }) => {
                 Categroy MenuList
               </label>
               {category.menuList.length !== 0 ? (
-                category.menuList.map((menu) => {
+                category.menuList.map((menu, index) => {
                   return (
                     <p
                       className="subSection-body-details-detail"
                       id="viewCategory-categoryMenuList"
+                       key={index}
                     >
-                      {menu}
+                      {menu.menuName},
                     </p>
                   );
                 })

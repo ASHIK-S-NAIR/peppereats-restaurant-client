@@ -102,8 +102,7 @@ const Menu = () => {
                       {menuItem.menuPrice}
                     </td>
                     <td className="adminPanel-right-table-body-value">
-                      {menuItem.menuCategory}
-                      {/* {loadCategoryName(menuItem.menuCategory)} */}
+                      {menuItem.menuCategory.categoryName}
                     </td>
                     <td className="adminPanel-right-table-body-value">
                       {moment(menuItem.createdAt).format("DD-MMM-yyyy")}

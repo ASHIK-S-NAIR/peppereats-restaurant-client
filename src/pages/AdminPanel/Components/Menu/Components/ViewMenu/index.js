@@ -65,7 +65,7 @@ const ViewMenu = ({ menu, setSubSection }) => {
                 className="subSection-body-details-detail"
                 id="viewMenu-menuCategory"
               >
-                {menu.menuCategory}
+                {menu.menuCategory.categoryName}
               </p>
             </div>
             <div className="subSection-body-details-detail-section">
