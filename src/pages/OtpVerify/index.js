@@ -48,7 +48,6 @@ const OtpVerify = () => {
         if (data.error) {
           return console.log(data.error);
         }
-        console.log(data);
       } else {
         const userFirstName = customerFirstName;
         const userLastName = customerLastName;

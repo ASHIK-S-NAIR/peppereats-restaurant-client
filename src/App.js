@@ -14,6 +14,7 @@ import AdminPanel from "pages/AdminPanel";
 import AdminRoutes from "setup/auth-manager/AdminRoutes";
 
 import Test from "pages/Test";
+import ReservationConfirmation from "pages/ReservationConfirmation";
 
 function App() {
   AOS.init();
@@ -39,6 +40,10 @@ function App() {
                 <AdminPanel />
               </AdminRoutes>
             }
+          />
+          <Route
+            path="/reservationconfirmation/:reservationId"
+            element={<ReservationConfirmation />}
           />
           <Route path="/test" element={<Test />} />
         </Routes>
